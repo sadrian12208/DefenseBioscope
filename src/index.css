@@ -1,0 +1,430 @@
+@import "tailwindcss";
+
+:root {
+  --bg-main: #12151e;
+  --bg-surface: #181d28;
+  --bg-surface-elevated: #1f2534;
+  --bg-recessed: #0e1118;
+  --text-primary: #f0f3f8;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(99, 102, 241, 0.35);
+
+  /* Dark Neumorphic Shadows */
+  --nm-elevated: 4px 4px 10px rgba(0, 0, 0, 0.5), -3px -3px 8px rgba(255, 255, 255, 0.03);
+  --nm-elevated-hover: 6px 6px 14px rgba(0, 0, 0, 0.65), -4px -4px 10px rgba(255, 255, 255, 0.05);
+  --nm-recessed: inset 3px 3px 6px rgba(0, 0, 0, 0.6), inset -2px -2px 5px rgba(255, 255, 255, 0.03);
+  --nm-card: 6px 6px 16px rgba(0, 0, 0, 0.6), -4px -4px 12px rgba(255, 255, 255, 0.03);
+
+  --accent-indigo: #6366f1;
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+
+  --map-filter: none;
+}
+
+body.theme-light {
+  --bg-main: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f8fafc;
+  --bg-recessed: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-subtle: #cbd5e1;
+  --border-accent: rgba(37, 99, 235, 0.5);
+
+  /* Light Tactical Elevation Shadows */
+  --nm-elevated: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --nm-elevated-hover: 0 3px 6px rgba(15, 23, 42, 0.12);
+  --nm-recessed: inset 0 2px 4px rgba(15, 23, 42, 0.06);
+  --nm-card: 0 4px 14px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.05);
+
+  --map-filter: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Material + Flat Clean UI Classes */
+.nm-card {
+  background: var(--bg-surface);
+  box-shadow: var(--nm-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+}
+
+/* Clear, distinct, tactile buttons - 0ms instant theme response */
+.nm-btn {
+  background: #151c2a;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  color: var(--text-primary);
+  transition: transform 0.08s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.nm-btn:hover {
+  background: #1c2638;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.45);
+}
+
+.nm-btn:active {
+  transform: translateY(1px);
+}
+
+.nm-btn-active {
+  background: #2563eb !important;
+  border-color: #3b82f6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.45) !important;
+}
+
+body.theme-light .nm-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  color: #1e293b;
+}
+
+body.theme-light .nm-btn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.14);
+}
+
+body.theme-light .nm-btn-active {
+  background: #2563eb !important;
+  border-color: #1d4ed8 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35) !important;
+}
+
+.nm-input {
+  background: var(--bg-recessed);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  outline: none;
+  transition: none;
+}
+
+.nm-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+/* MapLibre Container & Instant Theme Switching */
+#map-container {
+  background: var(--bg-main);
+}
+
+.maplibre-theme-wrapper {
+  filter: var(--map-filter);
+  width: 100%;
+  height: 100%;
+}
+
+/* MapLibre Controls Overrides for Clean Military Look */
+.maplibregl-ctrl-bottom-right {
+  bottom: 28px !important;
+  right: 14px !important;
+  margin: 0 !important;
+  z-index: 999 !important;
+}
+
+.maplibregl-ctrl-group {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 10px !important;
+  box-shadow: var(--nm-card) !important;
+  overflow: hidden;
+}
+
+.maplibregl-ctrl-group button {
+  background: transparent !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.maplibregl-ctrl-group button:last-child {
+  border-bottom: none !important;
+}
+
+.maplibregl-ctrl-group button:hover {
+  background: rgba(59, 130, 246, 0.15) !important;
+}
+
+.maplibregl-ctrl-compass {
+  display: block !important;
+}
+
+.maplibregl-ctrl-attrib {
+  display: none !important;
+}
+
+/* Tactical Map Popup (Sharp 90-degree square brutalist corners) */
+.system-popup-gl .maplibregl-popup-content {
+  background: #111622 !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 0px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  color: #ffffff !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  width: 280px !important;
+  max-width: 280px !important;
+}
+
+body.theme-light .system-popup-gl .maplibregl-popup-content {
+  background: #ffffff !important;
+  border: 1.5px solid #000000 !important; /* Sharp, clean black border */
+  border-radius: 0px !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.22), 0 4px 12px rgba(15, 23, 42, 0.12) !important;
+  color: #1e293b !important;
+}
+
+/* Day Mode: Clean, Crisp, Balanced Text inside Weapon Popup Card (Not pitch black, not absa) */
+body.theme-light .system-popup-gl .panel-title {
+  color: #1e293b !important;
+  font-weight: 800 !important;
+}
+
+body.theme-light .system-popup-gl .panel-sub {
+  color: #334155 !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .system-popup-gl .nm-input {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 0px !important;
+  color: #1e293b !important;
+}
+
+body.theme-light .system-popup-gl .nm-input div {
+  color: #334155 !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .system-popup-gl .nm-card {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 0px !important;
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .system-popup-gl .text-text-muted {
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .system-popup-gl .nm-btn {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 0px !important;
+  color: #1e293b !important;
+}
+
+.system-popup-gl .maplibregl-popup-tip {
+  border-top-color: #111622 !important;
+  border-bottom-color: #111622 !important;
+}
+
+body.theme-light .system-popup-gl .maplibregl-popup-tip {
+  border-top-color: #000000 !important;
+  border-bottom-color: #000000 !important;
+  border-left-color: #000000 !important;
+  border-right-color: #000000 !important;
+}
+
+.system-popup-gl .maplibregl-popup-close-button {
+  color: var(--text-secondary) !important;
+  font-size: 16px !important;
+  right: 8px !important;
+  top: 8px !important;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--bg-recessed);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.system-popup-gl .maplibregl-popup-close-button:hover {
+  color: var(--accent-red) !important;
+}
+
+/* Micro Slidebar for Horizontal Reading of Long Weapon Names & Technical Specs */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 2.5px;
+  width: 2.5px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 9999px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+}
+.scrollbar-thin:hover::-webkit-scrollbar-thumb {
+  background: var(--accent-blue);
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+}
+
+/* Mobile-First Layout Media Queries */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .mobile-only {
+    display: block !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-only {
+    display: block !important;
+  }
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* Weapon Card & Placed Card System (Sharp 90-degree square brutalist corners) */
+.system-card, .placed-card {
+  background: #111622;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0px !important;
+  color: #ffffff;
+  transition: transform 0.08s ease;
+}
+
+.system-card:hover, .placed-card:hover {
+  background: #182030;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.system-card.is-selected {
+  background: #1b2336;
+  border-left: 4px solid #3b82f6 !important;
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+/* Day Mode: Sharp square cards with crystal clear pitch-dark text (Zero absa) */
+body.theme-light .system-card,
+body.theme-light .placed-card {
+  background: #ffffff !important;
+  border: 1px solid #94a3b8 !important;
+  border-radius: 0px !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08) !important;
+  color: #020617 !important;
+}
+
+body.theme-light .system-card:hover,
+body.theme-light .placed-card:hover {
+  background: #f1f5f9 !important;
+  border-color: #64748b !important;
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.12) !important;
+}
+
+body.theme-light .system-card.is-selected {
+  background: #e2e8f0 !important;
+  border-left: 4px solid #1e40af !important;
+  border-color: #475569 !important;
+}
+
+body.theme-light .system-card .card-name,
+body.theme-light .placed-card .card-name {
+  color: #000000 !important; /* Jet black maximum clarity */
+  font-weight: 800 !important;
+}
+
+body.theme-light .system-card .card-meta,
+body.theme-light .placed-card .card-meta {
+  color: #0f172a !important; /* Pitch dark slate */
+  font-weight: 700 !important;
+}
+
+body.theme-light .system-card .card-icon-wrap,
+body.theme-light .placed-card .card-icon-wrap {
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+  border-radius: 0px !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+/* Right-Side Tactical Weapon Card */
+.tactical-side-panel {
+  background: #111622;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 4px 12px rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+}
+
+body.theme-light .tactical-side-panel {
+  background: #f0f7ff !important;
+  border: 1px solid #bfdbfe !important;
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.18), 0 4px 12px rgba(37, 99, 235, 0.1) !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .tactical-side-panel .panel-title {
+  color: #0f172a !important;
+}
+
+body.theme-light .tactical-side-panel .panel-sub {
+  color: #334155 !important;
+}
+

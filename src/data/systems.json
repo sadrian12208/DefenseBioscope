@@ -1,0 +1,1937 @@
+[
+  {
+    "id": "fatah-1",
+    "name": "Fatah-1",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 140,
+    "tags": "missile guided mlrs rocket pakistani tactical",
+    "description": "Pakistani guided multi-launch rocket system (G-MLRS)."
+  },
+  {
+    "id": "fatah-2",
+    "name": "Fatah-II",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 400,
+    "tags": "missile guided mlrs rocket pakistani tactical precision",
+    "description": "Advanced Pakistani guided rocket system with flat trajectory and precision strike capability."
+  },
+  {
+    "id": "fatah-3",
+    "name": "Fatah-III",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 450,
+    "tags": "missile guided mlrs rocket pakistani tactical",
+    "description": "Extended range variant of the Fatah guided rocket series."
+  },
+  {
+    "id": "fatah-4",
+    "name": "Fatah-4 (Fatah-IV)",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 700,
+    "tags": "missile guided mlrs rocket pakistani tactical hypersonic new",
+    "description": "Next-generation Pakistani guided missile/rocket system with extended range and maneuverability."
+  },
+  {
+    "id": "shaheen-1",
+    "name": "Shaheen-I",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 750,
+    "tags": "missile ballistic mrbm pakistani nuclear",
+    "description": "Pakistani land-based supersonic and short-to-medium range ballistic missile."
+  },
+  {
+    "id": "shaheen-2",
+    "name": "Shaheen-II",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 2000,
+    "tags": "missile ballistic mrbm pakistani nuclear",
+    "description": "Pakistani land-based medium-range ballistic missile."
+  },
+  {
+    "id": "shaheen-3",
+    "name": "Shaheen-III",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 2750,
+    "tags": "missile ballistic mrbm pakistani nuclear",
+    "description": "Pakistan's longest-range nuclear-capable ballistic missile."
+  },
+  {
+    "id": "ababeel",
+    "name": "Ababeel",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 2200,
+    "tags": "missile ballistic mrbm pakistani nuclear mirv",
+    "description": "Pakistani medium-range ballistic missile equipped with MIRV technology."
+  },
+  {
+    "id": "ghauri",
+    "name": "Ghauri",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 1500,
+    "tags": "missile ballistic mrbm pakistani nuclear",
+    "description": "Pakistani medium-range ballistic missile."
+  },
+  {
+    "id": "tayfun",
+    "name": "Tayfun",
+    "type": "missile",
+    "origin": "Turkey",
+    "range_km": 560,
+    "tags": "missile ballistic srbm turkish",
+    "description": "Turkish short-range ballistic missile developed by Roketsan."
+  },
+  {
+    "id": "cenk",
+    "name": "Cenk",
+    "type": "missile",
+    "origin": "Turkey",
+    "range_km": 1000,
+    "tags": "missile ballistic mrbm turkish",
+    "description": "Turkish medium-range ballistic missile."
+  },
+  {
+    "id": "yildirimhan",
+    "name": "Yıldırımhan ICBM",
+    "type": "missile",
+    "origin": "Turkey",
+    "range_km": 6000,
+    "tags": "missile ballistic icbm turkish long range",
+    "description": "Turkey's advanced long-range intercontinental ballistic missile project."
+  },
+  {
+    "id": "ford-class",
+    "name": "USS Gerald R. Ford (CVN-78)",
+    "type": "navy",
+    "origin": "United States",
+    "range_km": 800,
+    "tags": "navy ship aircraft carrier ford-class supercarrier",
+    "description": "United States Navy class of nuclear-powered aircraft carriers, currently the world's largest warship."
+  },
+  {
+    "id": "nimitz-class",
+    "name": "Nimitz-class Aircraft Carrier",
+    "type": "navy",
+    "origin": "United States",
+    "range_km": 1000,
+    "tags": "navy ship aircraft carrier supercarrier nuclear",
+    "description": "Class of ten nuclear-powered aircraft carriers in service with the United States Navy."
+  },
+  {
+    "id": "arleigh-burke",
+    "name": "Arleigh Burke-class Destroyer",
+    "type": "navy",
+    "origin": "United States",
+    "range_km": 150,
+    "tags": "navy ship destroyer aegis guided missile",
+    "description": "US Navy guided-missile destroyer equipped with Aegis Combat System."
+  },
+  {
+    "id": "ticonderoga",
+    "name": "Ticonderoga-class Cruiser",
+    "type": "navy",
+    "origin": "United States",
+    "range_km": 200,
+    "tags": "navy ship cruiser aegis guided missile",
+    "description": "Class of guided-missile cruisers equipped with the Aegis Combat System."
+  },
+  {
+    "id": "zumwalt",
+    "name": "Zumwalt-class Destroyer",
+    "type": "navy",
+    "origin": "United States",
+    "range_km": 300,
+    "tags": "navy ship destroyer stealth guided missile",
+    "description": "Class of stealth guided missile destroyers of the United States Navy."
+  },
+  {
+    "id": "virginia-class",
+    "name": "Virginia-class Submarine",
+    "type": "navy",
+    "origin": "United States",
+    "range_km": 2500,
+    "tags": "navy ship submarine ssn nuclear fast attack",
+    "description": "Class of nuclear-powered cruise missile fast-attack submarines."
+  },
+  {
+    "id": "type-055",
+    "name": "Type 055 Destroyer",
+    "type": "navy",
+    "origin": "China",
+    "range_km": 200,
+    "tags": "navy ship stealth guided missile cruiser destroyer chinese",
+    "description": "Class of stealth guided-missile destroyers for the People's Liberation Army Navy."
+  },
+  {
+    "id": "type052d",
+    "name": "Type 052D Destroyer",
+    "type": "navy",
+    "origin": "China",
+    "range_km": 250,
+    "tags": "navy ship destroyer guided missile chinese",
+    "description": "Class of guided missile destroyers in the Chinese People's Liberation Army Navy."
+  },
+  {
+    "id": "fujian-003",
+    "name": "Type 003 Carrier (Fujian)",
+    "type": "navy",
+    "origin": "China",
+    "range_km": 800,
+    "tags": "navy ship aircraft carrier catapult chinese",
+    "description": "Chinese second-generation aircraft carrier with catapult assisted take-off."
+  },
+  {
+    "id": "kirov",
+    "name": "Kirov-class Battlecruiser",
+    "type": "navy",
+    "origin": "Russia",
+    "range_km": 500,
+    "tags": "navy ship battlecruiser heavy nuclear russian",
+    "description": "Class of nuclear-powered military ships of the Russian Navy, the largest and heaviest surface combatant warships."
+  },
+  {
+    "id": "borei",
+    "name": "Borei-class Submarine",
+    "type": "navy",
+    "origin": "Russia",
+    "range_km": 8000,
+    "tags": "navy ship submarine ssbn nuclear ballistic missile russian",
+    "description": "Class of nuclear-powered ballistic missile submarines of the Russian Navy."
+  },
+  {
+    "id": "queen-elizabeth",
+    "name": "Queen Elizabeth-class Carrier",
+    "type": "navy",
+    "origin": "United Kingdom",
+    "range_km": 600,
+    "tags": "navy ship aircraft carrier british",
+    "description": "Class of two aircraft carriers which are the largest warships ever built for the Royal Navy."
+  },
+  {
+    "id": "fremm",
+    "name": "FREMM Multipurpose Frigate",
+    "type": "navy",
+    "origin": "France/Italy",
+    "range_km": 150,
+    "tags": "navy ship frigate multipurpose european",
+    "description": "Class of multi-purpose frigates designed by Naval Group and Fincantieri."
+  },
+  {
+    "id": "kalibr",
+    "name": "3M-54 Kalibr",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 2500,
+    "tags": "cruise missile land attack sea launched russian",
+    "description": "Russian cruise missile family — submarine, ship, and aircraft launched."
+  },
+  {
+    "id": "zircon",
+    "name": "3M22 Zircon",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 1000,
+    "tags": "hypersonic cruise missile anti-ship naval future prototype test russian",
+    "description": "Russian scramjet-powered maneuvering anti-ship hypersonic cruise missile."
+  },
+  {
+    "id": "igla",
+    "name": "9K38 Igla",
+    "type": "sam",
+    "origin": "Russia",
+    "range_km": 5.2,
+    "tags": "air defense sam manpads short range infrared shoulder fired russian",
+    "description": "Russian/Soviet man-portable infrared homing surface-to-air missile."
+  },
+  {
+    "id": "kornet",
+    "name": "9M133 Kornet",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 5.5,
+    "tags": "missile anti-tank atgm laser guided russian",
+    "description": "Russian man-portable anti-tank guided missile (ATGM)."
+  },
+  {
+    "id": "a10",
+    "name": "A-10 Thunderbolt II",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 1287,
+    "tags": "aircraft ground attack cas close air support warthog gun",
+    "description": "Designed for close air support of ground forces, famous for its GAU-8 Avenger gun."
+  },
+  {
+    "id": "aegis-sm3",
+    "name": "Aegis SM-3",
+    "type": "sam",
+    "origin": "United States",
+    "range_km": 700,
+    "tags": "air defense naval ship anti-ballistic aegis missile",
+    "description": "Ship-based ballistic missile defense using Standard Missile-3 interceptors."
+  },
+  {
+    "id": "hellfire",
+    "name": "AGM-114 Hellfire",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 11,
+    "tags": "missile air to surface anti-tank drone helicopter guided",
+    "description": "Air-to-surface missile (ASM) developed for anti-armor use, often carried by drones."
+  },
+  {
+    "id": "jassm",
+    "name": "AGM-158B JASSM-ER",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 1000,
+    "tags": "cruise missile air launched stealth precision strike",
+    "description": "Extended-range stealth air-launched cruise missile for precision strike."
+  },
+  {
+    "id": "arrw",
+    "name": "AGM-183 ARRW",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 1600,
+    "tags": "hypersonic missile air launched glide vehicle future concept prototype in-development usa test",
+    "description": "Air-Launched Rapid Response Weapon (Hypersonic Glide Vehicle)."
+  },
+  {
+    "id": "maverick",
+    "name": "AGM-65 Maverick",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 22,
+    "tags": "missile air to surface anti-armor cas",
+    "description": "Air-to-surface tactical missile designed for close air support."
+  },
+  {
+    "id": "harpoon",
+    "name": "AGM-84 Harpoon",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 280,
+    "tags": "anti-ship missile harpoon naval",
+    "description": "Anti-ship missile for stand-off engagement of surface targets."
+  },
+  {
+    "id": "agniiv",
+    "name": "Agni-IV",
+    "type": "missile",
+    "origin": "India",
+    "range_km": 4000,
+    "tags": "irbm nuclear nuke ballistic missile indian",
+    "description": "Indian intermediate-range ballistic missile with nuclear capability."
+  },
+  {
+    "id": "agniv",
+    "name": "Agni-V",
+    "type": "missile",
+    "origin": "India",
+    "range_km": 5500,
+    "tags": "icbm nuclear nuke intercontinental ballistic missile indian",
+    "description": "India's longest-range nuclear-capable ballistic missile."
+  },
+  {
+    "id": "amraam",
+    "name": "AIM-120 AMRAAM",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 105,
+    "tags": "missile air to air bvraam radar guided fighter",
+    "description": "Beyond-visual-range air-to-air missile (BVRAAM)."
+  },
+  {
+    "id": "sidewinder",
+    "name": "AIM-9 Sidewinder",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 35,
+    "tags": "missile air to air short range infrared dogfight fighter",
+    "description": "Short-range air-to-air missile, entering service in the 1950s but continually updated."
+  },
+  {
+    "id": "akash",
+    "name": "Akash",
+    "type": "sam",
+    "origin": "India",
+    "range_km": 30,
+    "tags": "air defense medium range indian sam",
+    "description": "Indian medium-range mobile surface-to-air missile system."
+  },
+  {
+    "id": "amx",
+    "name": "AMX International",
+    "type": "aircraft",
+    "origin": "Italy/Brazil",
+    "range_km": 3330,
+    "tags": "aircraft ground attack recon light",
+    "description": "Ground-attack aircraft for battlefield interdiction and reconnaissance."
+  },
+  {
+    "id": "arrow3",
+    "name": "Arrow 3",
+    "type": "sam",
+    "origin": "Israel",
+    "range_km": 2400,
+    "tags": "air defense anti-ballistic exo-atmospheric interceptor missile",
+    "description": "Exo-atmospheric interceptor for long-range ballistic missile defense."
+  },
+  {
+    "id": "aster30",
+    "name": "Aster 30",
+    "type": "sam",
+    "origin": "France/Italy",
+    "range_km": 120,
+    "tags": "air defense sam naval land based anti ballistic european",
+    "description": "European family of vertically launched surface-to-air missiles."
+  },
+  {
+    "id": "at4",
+    "name": "AT4",
+    "type": "missile",
+    "origin": "Sweden",
+    "range_km": 0.5,
+    "tags": "missile anti-tank unguided disposable infantry rocket",
+    "description": "84-mm unguided, portable, single-shot recoilless smoothbore weapon."
+  },
+  {
+    "id": "avangard",
+    "name": "Avangard",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 6000,
+    "tags": "hypersonic glide vehicle nuclear nuke icbm russian mach 27",
+    "description": "Russian hypersonic glide vehicle — Mach 27, virtually unstoppable."
+  },
+  {
+    "id": "b1b",
+    "name": "B-1B Lancer",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 12000,
+    "tags": "bomber strategic supersonic heavy swing wing",
+    "description": "Supersonic variable-sweep wing strategic bomber."
+  },
+  {
+    "id": "b2",
+    "name": "B-2 Spirit",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 11100,
+    "tags": "bomber stealth strategic nuclear nuke heavy",
+    "description": "Stealth strategic bomber — penetrates dense air defenses. Nuclear capable."
+  },
+  {
+    "id": "b21",
+    "name": "B-21 Raider",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 9600,
+    "tags": "bomber stealth strategic nuclear 6th gen future concept prototype in-development usa",
+    "description": "Advanced stealth intercontinental strategic bomber (in active testing)."
+  },
+  {
+    "id": "b52",
+    "name": "B-52H Stratofortress",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 16232,
+    "tags": "bomber strategic nuclear nuke heavy long range",
+    "description": "Long-range strategic bomber — backbone of US bomber fleet since 1955."
+  },
+  {
+    "id": "babur",
+    "name": "Babur",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 700,
+    "tags": "cruise missile land attack pakistani nuclear",
+    "description": "Pakistani nuclear-capable ground-launched cruise missile."
+  },
+  {
+    "id": "akinci",
+    "name": "Bayraktar Akinci",
+    "type": "drone",
+    "origin": "Turkey",
+    "range_km": 5000,
+    "tags": "drone uav ucav hale high altitude heavy",
+    "description": "High-altitude long-endurance (HALE) drone with heavy payload capability."
+  },
+  {
+    "id": "kizilelma",
+    "name": "Bayraktar Kizilelma",
+    "type": "drone",
+    "origin": "Turkey",
+    "range_km": 930,
+    "tags": "drone uav ucav jet stealth future fighter companion",
+    "description": "Jet-powered, single-engine, low-observable carrier-capable UCAV."
+  },
+  {
+    "id": "tb2",
+    "name": "Bayraktar TB2",
+    "type": "drone",
+    "origin": "Turkey",
+    "range_km": 300,
+    "tags": "drone uav ucav loitering baykar medium altitude",
+    "description": "Turkish medium-altitude long-endurance (MALE) unmanned combat aerial vehicle."
+  },
+  {
+    "id": "tb3",
+    "name": "Bayraktar TB3",
+    "type": "drone",
+    "origin": "Turkey",
+    "range_km": 1000,
+    "tags": "drone uav ucav naval carrier capable",
+    "description": "Naval variant of TB2, capable of landing on short runways."
+  },
+  {
+    "id": "tomahawk",
+    "name": "BGM-109 Tomahawk",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 2500,
+    "tags": "cruise missile land attack long range subsonic",
+    "description": "Long-range all-weather subsonic cruise missile for land attack."
+  },
+  {
+    "id": "brahmos",
+    "name": "BrahMos",
+    "type": "missile",
+    "origin": "India/Russia",
+    "range_km": 450,
+    "tags": "cruise missile supersonic anti-ship land attack indian",
+    "description": "Supersonic cruise missile — world's fastest operational cruise missile."
+  },
+  {
+    "id": "brahmos2",
+    "name": "BrahMos-II",
+    "type": "missile",
+    "origin": "India/Russia",
+    "range_km": 1000,
+    "tags": "hypersonic cruise missile anti-ship future concept prototype in-development indian",
+    "description": "Hypersonic cruise missile currently under joint development."
+  },
+  {
+    "id": "brimstone",
+    "name": "Brimstone",
+    "type": "missile",
+    "origin": "United Kingdom",
+    "range_km": 20,
+    "tags": "missile air to surface anti-tank radar guided",
+    "description": "Ground attack missile for use against fast moving and maneuvering targets."
+  },
+  {
+    "id": "bukm3",
+    "name": "Buk-M3",
+    "type": "sam",
+    "origin": "Russia",
+    "range_km": 70,
+    "tags": "air defense medium range sam",
+    "description": "Medium-range SAM for defense against cruise missiles, aircraft, and UAVs."
+  },
+  {
+    "id": "cram",
+    "name": "C-RAM Centurion",
+    "type": "sam",
+    "origin": "United States",
+    "range_km": 2,
+    "tags": "air defense point defense counter rocket artillery mortar",
+    "description": "Counter Rocket, Artillery, Mortar system for base point defense."
+  },
+  {
+    "id": "camm",
+    "name": "CAMM (Sea Ceptor)",
+    "type": "sam",
+    "origin": "United Kingdom",
+    "range_km": 25,
+    "tags": "air defense sam naval short medium range british",
+    "description": "Common Anti-Air Modular Missile for point and local area defense."
+  },
+  {
+    "id": "ch4",
+    "name": "CH-4 Rainbow",
+    "type": "drone",
+    "origin": "China",
+    "range_km": 3500,
+    "tags": "drone uav ucav male chinese",
+    "description": "Chinese MALE UCAV, similar in role to the MQ-9."
+  },
+  {
+    "id": "j7",
+    "name": "Chengdu J-7",
+    "type": "aircraft",
+    "origin": "China",
+    "range_km": 1480,
+    "tags": "fighter jet 2nd gen 3rd gen interceptor chinese",
+    "description": "Chinese license-built version of the MiG-21."
+  },
+  {
+    "id": "cj10",
+    "name": "CJ-10",
+    "type": "missile",
+    "origin": "China",
+    "range_km": 2000,
+    "tags": "cruise missile land attack chinese long range",
+    "description": "Chinese long-range land-attack cruise missile."
+  },
+  {
+    "id": "lrhw",
+    "name": "Dark Eagle LRHW",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 2775,
+    "tags": "hypersonic missile glide vehicle ground launched future concept prototype in-development usa",
+    "description": "Long-Range Hypersonic Weapon developed for the US Army/Navy."
+  },
+  {
+    "id": "rafale",
+    "name": "Dassault Rafale",
+    "type": "aircraft",
+    "origin": "France",
+    "range_km": 3700,
+    "tags": "fighter jet 4th gen++ french multirole nuclear",
+    "description": "French twin-engine omnirole fighter — air, ground, nuclear capable."
+  },
+  {
+    "id": "davids-sling",
+    "name": "David's Sling",
+    "type": "sam",
+    "origin": "Israel",
+    "range_km": 300,
+    "tags": "air defense medium long range cruise missile interceptor",
+    "description": "Medium-to-long-range system to intercept tactical ballistic missiles and cruise missiles."
+  },
+  {
+    "id": "df21d",
+    "name": "DF-21D",
+    "type": "missile",
+    "origin": "China",
+    "range_km": 1500,
+    "tags": "asbm anti-ship ballistic missile carrier killer chinese",
+    "description": "Anti-ship ballistic missile — the 'carrier killer'."
+  },
+  {
+    "id": "df41",
+    "name": "DF-41",
+    "type": "missile",
+    "origin": "China",
+    "range_km": 15000,
+    "tags": "icbm nuclear nuke intercontinental ballistic missile chinese strategic",
+    "description": "China's most advanced road-mobile ICBM with MIRV capability."
+  },
+  {
+    "id": "df5b",
+    "name": "DF-5B",
+    "type": "missile",
+    "origin": "China",
+    "range_km": 13000,
+    "tags": "icbm nuclear nuke intercontinental ballistic missile silo chinese",
+    "description": "Silo-based Chinese ICBM with multiple warheads."
+  },
+  {
+    "id": "dfzf",
+    "name": "DF-ZF",
+    "type": "missile",
+    "origin": "China",
+    "range_km": 2000,
+    "tags": "hypersonic glide vehicle chinese mach 10",
+    "description": "Chinese hypersonic glide vehicle for precision strikes."
+  },
+  {
+    "id": "hermes900",
+    "name": "Elbit Hermes 900",
+    "type": "drone",
+    "origin": "Israel",
+    "range_km": 2500,
+    "tags": "drone uav male recon israeli",
+    "description": "Israeli medium-size multi-payload MALE UAV."
+  },
+  {
+    "id": "typhoon",
+    "name": "Eurofighter Typhoon",
+    "type": "aircraft",
+    "origin": "Europe",
+    "range_km": 2900,
+    "tags": "fighter jet 4th gen european multirole",
+    "description": "European twin-engine multirole canard-delta fighter."
+  },
+  {
+    "id": "exocet",
+    "name": "Exocet",
+    "type": "missile",
+    "origin": "France",
+    "range_km": 180,
+    "tags": "anti-ship missile french naval",
+    "description": "French anti-ship missile used by navies worldwide."
+  },
+  {
+    "id": "f117",
+    "name": "F-117 Nighthawk",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 1720,
+    "tags": "fighter jet bomber stealth ground attack retired",
+    "description": "The first operational aircraft designed around stealth technology."
+  },
+  {
+    "id": "f14",
+    "name": "F-14 Tomcat",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 2960,
+    "tags": "fighter jet 4th gen interceptor fleet defense variable sweep",
+    "description": "Iconic twin-engine, variable-sweep wing, supersonic fleet defense interceptor."
+  },
+  {
+    "id": "f15ex",
+    "name": "F-15EX Eagle II",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 3500,
+    "tags": "fighter jet 4th gen strike heavy payload",
+    "description": "Advanced strike fighter with the largest payload of any US fighter."
+  },
+  {
+    "id": "f16",
+    "name": "F-16 Fighting Falcon",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 3200,
+    "tags": "fighter jet 4th gen multirole light",
+    "description": "Versatile 4th-gen light multirole fighter used by 25+ nations."
+  },
+  {
+    "id": "f22",
+    "name": "F-22 Raptor",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 2960,
+    "tags": "fighter jet stealth 5th gen air superiority supercruise",
+    "description": "Fifth-gen stealth tactical fighter with supercruise capability."
+  },
+  {
+    "id": "f35a",
+    "name": "F-35A Lightning II",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 2220,
+    "tags": "fighter jet stealth 5th gen multirole",
+    "description": "Fifth-gen multirole stealth fighter — most produced modern fighter."
+  },
+  {
+    "id": "f4",
+    "name": "F-4 Phantom II",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 2600,
+    "tags": "fighter jet 3rd gen multirole interceptor bomber",
+    "description": "Tandem two-seat, twin-engine, all-weather, long-range supersonic interceptor/bomber."
+  },
+  {
+    "id": "fa18",
+    "name": "F/A-18E/F Super Hornet",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 2346,
+    "tags": "fighter jet naval carrier multirole",
+    "description": "Twin-engine carrier-based multirole fighter."
+  },
+  {
+    "id": "j35",
+    "name": "FC-31 / J-35",
+    "type": "aircraft",
+    "origin": "China",
+    "range_km": 2000,
+    "tags": "fighter jet stealth 5th gen naval carrier future prototype in-development chinese",
+    "description": "Chinese 5th-generation stealth fighter, intended for carrier use."
+  },
+  {
+    "id": "fcas",
+    "name": "FCAS / SCAF",
+    "type": "aircraft",
+    "origin": "France/Germany/Spain",
+    "range_km": 3500,
+    "tags": "fighter jet stealth 6th gen future concept prototype in-development european",
+    "description": "Future Combat Air System — European 6th generation fighter program."
+  },
+  {
+    "id": "javelin",
+    "name": "FGM-148 Javelin",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 4,
+    "tags": "missile anti-tank atgm fire and forget top attack infantry",
+    "description": "American man-portable fire-and-forget anti-tank missile."
+  },
+  {
+    "id": "stinger",
+    "name": "FIM-92 Stinger",
+    "type": "sam",
+    "origin": "United States",
+    "range_km": 8,
+    "tags": "air defense sam manpads short range infrared shoulder fired",
+    "description": "Man-portable air-defense system (MANPADS) that operates as an infrared homing SAM."
+  },
+  {
+    "id": "goalkeeper",
+    "name": "Goalkeeper CIWS",
+    "type": "sam",
+    "origin": "Netherlands",
+    "range_km": 2,
+    "tags": "air defense naval gun ciws point defense gatling european",
+    "description": "Dutch close-in weapon system using a 30mm Gatling gun."
+  },
+  {
+    "id": "h20",
+    "name": "H-20",
+    "type": "aircraft",
+    "origin": "China",
+    "range_km": 8500,
+    "tags": "bomber stealth strategic nuclear future concept prototype in-development chinese",
+    "description": "China's upcoming subsonic stealth bomber concept."
+  },
+  {
+    "id": "hacm",
+    "name": "HACM",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 1000,
+    "tags": "hypersonic cruise missile scramjet air launched future concept prototype in-development usa",
+    "description": "Hypersonic Attack Cruise Missile powered by a scramjet engine."
+  },
+  {
+    "id": "tejas",
+    "name": "HAL Tejas Mk2",
+    "type": "aircraft",
+    "origin": "India",
+    "range_km": 1850,
+    "tags": "fighter jet 4th gen indian light multirole",
+    "description": "Indian lightweight single-engine multirole fighter."
+  },
+  {
+    "id": "hq9",
+    "name": "HQ-9",
+    "type": "sam",
+    "origin": "China",
+    "range_km": 200,
+    "tags": "air defense sam chinese surface to air",
+    "description": "China's primary long-range surface-to-air missile system."
+  },
+  {
+    "id": "hwasong15",
+    "name": "Hwasong-15",
+    "type": "missile",
+    "origin": "North Korea",
+    "range_km": 13000,
+    "tags": "icbm nuclear nuke intercontinental ballistic missile north korean",
+    "description": "North Korea's ICBM capable of reaching the US mainland."
+  },
+  {
+    "id": "heron",
+    "name": "IAI Heron",
+    "type": "drone",
+    "origin": "Israel",
+    "range_km": 350,
+    "tags": "drone uav male recon israeli",
+    "description": "Medium-altitude long-endurance UAV developed by Israel."
+  },
+  {
+    "id": "iron-dome",
+    "name": "Iron Dome",
+    "type": "sam",
+    "origin": "Israel",
+    "range_km": 70,
+    "tags": "air defense short range rocket artillery interceptor",
+    "description": "Mobile defense system designed to intercept short-range rockets and artillery shells."
+  },
+  {
+    "id": "iskander",
+    "name": "Iskander-M",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 500,
+    "tags": "srbm short range ballistic tactical missile russian",
+    "description": "Short-range tactical ballistic missile with high accuracy and maneuverable warhead."
+  },
+  {
+    "id": "j10c",
+    "name": "J-10C Vigorous Dragon",
+    "type": "aircraft",
+    "origin": "China",
+    "range_km": 2950,
+    "tags": "fighter jet 4th gen chinese multirole",
+    "description": "Chinese single-engine multirole fighter aircraft."
+  },
+  {
+    "id": "j20",
+    "name": "J-20 Mighty Dragon",
+    "type": "aircraft",
+    "origin": "China",
+    "range_km": 2000,
+    "tags": "fighter jet stealth 5th gen chinese",
+    "description": "China's fifth-gen stealth fighter for air superiority."
+  },
+  {
+    "id": "gripen",
+    "name": "JAS 39 Gripen E",
+    "type": "aircraft",
+    "origin": "Sweden",
+    "range_km": 2500,
+    "tags": "fighter jet 4th gen swedish light multirole",
+    "description": "Swedish lightweight single-engine multirole fighter."
+  },
+  {
+    "id": "jericho3",
+    "name": "Jericho III",
+    "type": "missile",
+    "origin": "Israel",
+    "range_km": 6500,
+    "tags": "icbm nuclear nuke intercontinental ballistic missile israeli",
+    "description": "Israeli nuclear-capable ICBM providing strategic deterrence."
+  },
+  {
+    "id": "jf17",
+    "name": "JF-17 Thunder",
+    "type": "aircraft",
+    "origin": "Pakistan/China",
+    "range_km": 3482,
+    "tags": "fighter jet 4th gen light multirole pakistani chinese",
+    "description": "Lightweight, single-engine, multi-role combat aircraft."
+  },
+  {
+    "id": "kf21",
+    "name": "KF-21 Boramae",
+    "type": "aircraft",
+    "origin": "South Korea",
+    "range_km": 2900,
+    "tags": "fighter jet stealth 4.5 gen 5th gen future concept prototype in-development korean",
+    "description": "South Korean advanced multirole fighter (in flight testing phase)."
+  },
+  {
+    "id": "kh101",
+    "name": "Kh-101",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 4500,
+    "tags": "cruise missile air launched stealth long range russian",
+    "description": "Russian air-launched stealth cruise missile with extreme range."
+  },
+  {
+    "id": "kinzhal",
+    "name": "Kh-47M2 Kinzhal",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 2000,
+    "tags": "hypersonic missile air launched ballistic russian mach 10",
+    "description": "Russian air-launched hypersonic ballistic missile — Mach 10 speed."
+  },
+  {
+    "id": "minuteman",
+    "name": "LGM-30G Minuteman III",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 13000,
+    "tags": "icbm nuclear nuke intercontinental ballistic missile strategic",
+    "description": "US land-based ICBM forming part of the nuclear triad. MIRV capable."
+  },
+  {
+    "id": "m51",
+    "name": "M51 SLBM",
+    "type": "missile",
+    "origin": "France",
+    "range_km": 10000,
+    "tags": "slbm nuclear nuke submarine ballistic missile french strategic",
+    "description": "French submarine-launched ballistic missile for nuclear deterrence."
+  },
+  {
+    "id": "meteor",
+    "name": "Meteor",
+    "type": "missile",
+    "origin": "Europe",
+    "range_km": 200,
+    "tags": "missile air to air bvraam ramjet european long range",
+    "description": "Active radar guided beyond-visual-range air-to-air missile (BVRAAM)."
+  },
+  {
+    "id": "mica",
+    "name": "MICA",
+    "type": "missile",
+    "origin": "France",
+    "range_km": 80,
+    "tags": "missile air to air multi target french",
+    "description": "Anti-air multi-target, all weather, fire-and-forget short and medium-range missile."
+  },
+  {
+    "id": "mig21",
+    "name": "MiG-21 Fishbed",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 1210,
+    "tags": "fighter jet 2nd gen 3rd gen supersonic light interceptor",
+    "description": "Supersonic jet fighter and interceptor aircraft."
+  },
+  {
+    "id": "mig23",
+    "name": "MiG-23 Flogger",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 1900,
+    "tags": "fighter jet 3rd gen variable sweep wing interceptor",
+    "description": "Variable-geometry fighter aircraft."
+  },
+  {
+    "id": "mig25",
+    "name": "MiG-25 Foxbat",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 1730,
+    "tags": "fighter jet interceptor recon mach 3 fast",
+    "description": "Supersonic interceptor and reconnaissance aircraft, one of the fastest military aircraft."
+  },
+  {
+    "id": "mig29",
+    "name": "MiG-29 Fulcrum",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 1500,
+    "tags": "fighter jet 4th gen russian light",
+    "description": "Twin-engine light multirole fighter aircraft."
+  },
+  {
+    "id": "mig31",
+    "name": "MiG-31 Foxhound",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 3000,
+    "tags": "interceptor jet russian high speed mach 2.8",
+    "description": "Supersonic interceptor — one of the fastest combat aircraft."
+  },
+  {
+    "id": "patriot",
+    "name": "MIM-104 Patriot PAC-3",
+    "type": "sam",
+    "origin": "United States",
+    "range_km": 160,
+    "tags": "air defense sam patriot anti-ballistic missile",
+    "description": "Advanced air defense system with hit-to-kill technology for ballistic missile defense."
+  },
+  {
+    "id": "hawk",
+    "name": "MIM-23 HAWK",
+    "type": "sam",
+    "origin": "United States",
+    "range_km": 45,
+    "tags": "air defense medium range hawk sam",
+    "description": "Medium-range semi-active radar homing SAM system."
+  },
+  {
+    "id": "mirage2000",
+    "name": "Mirage 2000",
+    "type": "aircraft",
+    "origin": "France",
+    "range_km": 1550,
+    "tags": "fighter jet 4th gen french multirole delta wing",
+    "description": "French multirole, single-engine fourth-generation jet fighter."
+  },
+  {
+    "id": "f2",
+    "name": "Mitsubishi F-2",
+    "type": "aircraft",
+    "origin": "Japan",
+    "range_km": 834,
+    "tags": "fighter jet 4th gen multirole japanese",
+    "description": "Japanese multirole fighter derived from the F-16."
+  },
+  {
+    "id": "mq1",
+    "name": "MQ-1 Predator",
+    "type": "drone",
+    "origin": "United States",
+    "range_km": 1250,
+    "tags": "drone uav ucav male retired",
+    "description": "Historical MALE UAV used extensively for reconnaissance and strikes."
+  },
+  {
+    "id": "ghostbat",
+    "name": "MQ-28 Ghost Bat",
+    "type": "drone",
+    "origin": "Australia",
+    "range_km": 3700,
+    "tags": "drone uav ucav stealth loyal wingman australian",
+    "description": "Stealth, multirole, unmanned aerial vehicle designed for the RAAF."
+  },
+  {
+    "id": "mq4c",
+    "name": "MQ-4C Triton",
+    "type": "drone",
+    "origin": "United States",
+    "range_km": 15200,
+    "tags": "drone uav hale surveillance maritime naval",
+    "description": "Maritime surveillance drone based on the Global Hawk."
+  },
+  {
+    "id": "mq9",
+    "name": "MQ-9 Reaper",
+    "type": "drone",
+    "origin": "United States",
+    "range_km": 1900,
+    "tags": "drone uav ucav male hunter killer",
+    "description": "Primarily a hunter-killer UAV, the workhorse of US drone operations."
+  },
+  {
+    "id": "nasams",
+    "name": "NASAMS",
+    "type": "sam",
+    "origin": "Norway/USA",
+    "range_km": 40,
+    "tags": "air defense medium range amraam",
+    "description": "Medium-range air defense system using AMRAAM missiles."
+  },
+  {
+    "id": "ngad",
+    "name": "NGAD (Next Gen Air Dominance)",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 4000,
+    "tags": "fighter jet stealth 6th gen future concept prototype in-development usa",
+    "description": "US 6th-generation air superiority fighter concept to replace the F-22."
+  },
+  {
+    "id": "nirbhay",
+    "name": "Nirbhay",
+    "type": "missile",
+    "origin": "India",
+    "range_km": 1500,
+    "tags": "cruise missile subsonic land attack indian",
+    "description": "Indian long-range subsonic cruise missile."
+  },
+  {
+    "id": "nlaw",
+    "name": "NLAW",
+    "type": "missile",
+    "origin": "UK/Sweden",
+    "range_km": 0.8,
+    "tags": "missile anti-tank atgm disposable infantry top attack",
+    "description": "Next generation Light Anti-armour Weapon."
+  },
+  {
+    "id": "orlan10",
+    "name": "Orlan-10",
+    "type": "drone",
+    "origin": "Russia",
+    "range_km": 600,
+    "tags": "drone uav recon tactical scout",
+    "description": "Russian reconnaissance, unmanned aerial vehicle."
+  },
+  {
+    "id": "oniks",
+    "name": "P-800 Oniks",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 600,
+    "tags": "anti-ship cruise missile supersonic russian",
+    "description": "Russian supersonic anti-ship cruise missile."
+  },
+  {
+    "id": "pakda",
+    "name": "PAK DA",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 12000,
+    "tags": "bomber stealth strategic nuclear future concept prototype in-development russian",
+    "description": "Russian next-generation stealth strategic bomber concept."
+  },
+  {
+    "id": "tornado",
+    "name": "Panavia Tornado",
+    "type": "aircraft",
+    "origin": "Europe",
+    "range_km": 3890,
+    "tags": "fighter jet 4th gen bomber interceptor swing wing european",
+    "description": "Family of twin-engine, variable-sweep wing combat aircraft."
+  },
+  {
+    "id": "pantsir",
+    "name": "Pantsir-S1",
+    "type": "sam",
+    "origin": "Russia",
+    "range_km": 20,
+    "tags": "air defense short range point defense ciws",
+    "description": "Combined short-range SAM and anti-aircraft artillery system."
+  },
+  {
+    "id": "phalanx",
+    "name": "Phalanx CIWS",
+    "type": "sam",
+    "origin": "United States",
+    "range_km": 3.6,
+    "tags": "air defense naval gun ciws point defense gatling",
+    "description": "Close-in weapon system for defense against anti-ship missiles and helicopters."
+  },
+  {
+    "id": "pl10",
+    "name": "PL-10",
+    "type": "missile",
+    "origin": "China",
+    "range_km": 20,
+    "tags": "missile air to air short range infrared dogfight chinese",
+    "description": "Chinese short-range infrared homing air-to-air missile."
+  },
+  {
+    "id": "pl15",
+    "name": "PL-15",
+    "type": "missile",
+    "origin": "China",
+    "range_km": 300,
+    "tags": "missile air to air bvraam long range chinese",
+    "description": "Chinese active radar-guided long range air-to-air missile."
+  },
+  {
+    "id": "r27",
+    "name": "R-27 (AA-10 Alamo)",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 130,
+    "tags": "missile air to air medium range russian",
+    "description": "Russian medium-to-long-range air-to-air missile."
+  },
+  {
+    "id": "r73",
+    "name": "R-73 (AA-11 Archer)",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 30,
+    "tags": "missile air to air short range infrared dogfight russian",
+    "description": "Russian short-range air-to-air missile."
+  },
+  {
+    "id": "r77",
+    "name": "R-77 (AA-12 Adder)",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 110,
+    "tags": "missile air to air bvraam radar guided russian",
+    "description": "Russian active radar homing beyond-visual-range air-to-air missile."
+  },
+  {
+    "id": "rbs70",
+    "name": "RBS 70",
+    "type": "sam",
+    "origin": "Sweden",
+    "range_km": 9,
+    "tags": "air defense sam manpads short range laser guided swedish",
+    "description": "Swedish man-portable air-defense system (MANPADS)."
+  },
+  {
+    "id": "ram",
+    "name": "RIM-116 RAM",
+    "type": "sam",
+    "origin": "USA/Germany",
+    "range_km": 9,
+    "tags": "air defense sam naval ciws point defense",
+    "description": "Rolling Airframe Missile — lightweight, quick-reaction, fire-and-forget missile."
+  },
+  {
+    "id": "seasparrow",
+    "name": "RIM-162 ESSM",
+    "type": "sam",
+    "origin": "United States",
+    "range_km": 50,
+    "tags": "air defense sam naval ship defense medium range",
+    "description": "Evolved SeaSparrow Missile for protection against anti-ship missiles."
+  },
+  {
+    "id": "sm2",
+    "name": "RIM-66 Standard Missile 2",
+    "type": "sam",
+    "origin": "United States",
+    "range_km": 167,
+    "tags": "air defense sam naval ship fleet defense aegis",
+    "description": "Primary surface-to-air fleet defense weapon for the US Navy."
+  },
+  {
+    "id": "rq4",
+    "name": "RQ-4 Global Hawk",
+    "type": "drone",
+    "origin": "United States",
+    "range_km": 22700,
+    "tags": "drone uav hale surveillance recon strategic",
+    "description": "High-altitude, long-endurance reconnaissance UAV."
+  },
+  {
+    "id": "yars",
+    "name": "RS-24 Yars",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 12000,
+    "tags": "icbm nuclear nuke intercontinental ballistic missile mirv russian",
+    "description": "Russian MIRV-equipped ICBM, successor to Topol-M."
+  },
+  {
+    "id": "sarmat",
+    "name": "RS-28 Sarmat",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 18000,
+    "tags": "icbm nuclear nuke intercontinental ballistic missile strategic satan",
+    "description": "Heavy liquid-fueled ICBM — the world's most powerful nuclear missile, NATO name 'Satan II'."
+  },
+  {
+    "id": "topol",
+    "name": "RT-2PM2 Topol-M",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 11000,
+    "tags": "icbm nuclear nuke intercontinental ballistic missile mobile russian",
+    "description": "Russian road-mobile and silo-based solid-fuel ICBM."
+  },
+  {
+    "id": "s300",
+    "name": "S-300PMU2",
+    "type": "sam",
+    "origin": "Russia",
+    "range_km": 200,
+    "tags": "air defense sam medium range surface to air",
+    "description": "Long-range SAM system designed to defend against aircraft and cruise missiles."
+  },
+  {
+    "id": "s400",
+    "name": "S-400 Triumf",
+    "type": "sam",
+    "origin": "Russia",
+    "range_km": 400,
+    "tags": "air defense sam long range surface to air",
+    "description": "Advanced long-range SAM system capable of engaging aircraft, cruise missiles, and ballistic missiles."
+  },
+  {
+    "id": "s500",
+    "name": "S-500 Prometheus",
+    "type": "sam",
+    "origin": "Russia",
+    "range_km": 600,
+    "tags": "air defense anti-ballistic missile long range",
+    "description": "Next-gen Russian anti-ballistic missile system designed to intercept ICBMs and hypersonic targets."
+  },
+  {
+    "id": "okhotnik",
+    "name": "S-70 Okhotnik-B",
+    "type": "drone",
+    "origin": "Russia",
+    "range_km": 6000,
+    "tags": "drone uav ucav stealth flying wing heavy jet",
+    "description": "Russian stealth heavy unmanned combat aerial vehicle."
+  },
+  {
+    "id": "scalp",
+    "name": "SCALP-EG / Storm Shadow",
+    "type": "missile",
+    "origin": "France/UK",
+    "range_km": 560,
+    "tags": "cruise missile air launched stealth storm shadow",
+    "description": "Long-range air-launched cruise missile for hardened targets."
+  },
+  {
+    "id": "shahed129",
+    "name": "Shahed 129",
+    "type": "drone",
+    "origin": "Iran",
+    "range_km": 1700,
+    "tags": "drone uav ucav male recon",
+    "description": "Iranian single-engine MALE UCAV."
+  },
+  {
+    "id": "shahed136",
+    "name": "Shahed 136",
+    "type": "drone",
+    "origin": "Iran",
+    "range_km": 2500,
+    "tags": "drone uav loitering munition kamikaze suicide",
+    "description": "Iranian loitering munition (kamikaze drone)."
+  },
+  {
+    "id": "j11",
+    "name": "Shenyang J-11",
+    "type": "aircraft",
+    "origin": "China",
+    "range_km": 3530,
+    "tags": "fighter jet 4th gen air superiority chinese flanker",
+    "description": "Chinese air superiority fighter based on the Su-27."
+  },
+  {
+    "id": "j15",
+    "name": "Shenyang J-15",
+    "type": "aircraft",
+    "origin": "China",
+    "range_km": 3500,
+    "tags": "fighter jet 4th gen naval carrier chinese flying shark",
+    "description": "Chinese 4th-generation, twin-jet, all-weather, carrier-based fighter."
+  },
+  {
+    "id": "j16",
+    "name": "Shenyang J-16",
+    "type": "aircraft",
+    "origin": "China",
+    "range_km": 3900,
+    "tags": "fighter jet 4th gen++ strike multirole chinese",
+    "description": "Advanced Chinese tandem-seat, twinjet, multirole strike fighter."
+  },
+  {
+    "id": "j8",
+    "name": "Shenyang J-8",
+    "type": "aircraft",
+    "origin": "China",
+    "range_km": 2200,
+    "tags": "fighter jet interceptor high altitude fast chinese",
+    "description": "High-speed, high-altitude Chinese single-seat interceptor."
+  },
+  {
+    "id": "sm6",
+    "name": "SM-6 Standard Missile",
+    "type": "sam",
+    "origin": "United States",
+    "range_km": 370,
+    "tags": "air defense naval anti-air anti-ship missile",
+    "description": "Extended-range naval air defense missile with anti-ship capability."
+  },
+  {
+    "id": "sr71",
+    "name": "SR-71 Blackbird",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 5400,
+    "tags": "aircraft recon mach 3 strategic spy",
+    "description": "Legendary high-altitude, Mach 3+ strategic reconnaissance aircraft."
+  },
+  {
+    "id": "starstreak",
+    "name": "Starstreak",
+    "type": "sam",
+    "origin": "United Kingdom",
+    "range_km": 7,
+    "tags": "air defense sam manpads short range laser guided",
+    "description": "British short-range SAM system utilizing three dart-like projectiles."
+  },
+  {
+    "id": "su24",
+    "name": "Su-24 Fencer",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 2775,
+    "tags": "aircraft bomber attack swing wing russian",
+    "description": "Supersonic, all-weather attack aircraft with a variable-sweep wing."
+  },
+  {
+    "id": "su25",
+    "name": "Su-25 Frogfoot",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 1000,
+    "tags": "aircraft ground attack cas close air support russian",
+    "description": "Single-seat, twin-engine jet aircraft for close air support."
+  },
+  {
+    "id": "su27",
+    "name": "Su-27 Flanker",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 3530,
+    "tags": "fighter jet 4th gen russian air superiority",
+    "description": "Highly maneuverable twin-engine air superiority fighter."
+  },
+  {
+    "id": "su30",
+    "name": "Su-30 Flanker-C",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 3000,
+    "tags": "fighter jet 4th gen russian multirole twin seat",
+    "description": "Twin-engine, two-seat supermaneuverable fighter aircraft."
+  },
+  {
+    "id": "su34",
+    "name": "Su-34 Fullback",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 4000,
+    "tags": "fighter bomber strike russian twin seat",
+    "description": "Russian twin-seat strike fighter for tactical bombing missions."
+  },
+  {
+    "id": "su35",
+    "name": "Su-35 Flanker-E",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 3600,
+    "tags": "fighter jet 4th gen++ russian supermaneuverable",
+    "description": "Supermaneuverable multirole fighter with thrust vectoring."
+  },
+  {
+    "id": "su57",
+    "name": "Su-57 Felon",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 3500,
+    "tags": "fighter jet stealth 5th gen russian air superiority",
+    "description": "Russia's fifth-gen stealth multirole fighter."
+  },
+  {
+    "id": "switchblade300",
+    "name": "Switchblade 300",
+    "type": "drone",
+    "origin": "United States",
+    "range_km": 10,
+    "tags": "drone uav loitering munition kamikaze tactical",
+    "description": "Miniature loitering munition designed for infantry use."
+  },
+  {
+    "id": "switchblade600",
+    "name": "Switchblade 600",
+    "type": "drone",
+    "origin": "United States",
+    "range_km": 40,
+    "tags": "drone uav loitering munition anti-tank armor",
+    "description": "Larger loitering munition designed for anti-armor strikes."
+  },
+  {
+    "id": "kaan",
+    "name": "TAI TF Kaan",
+    "type": "aircraft",
+    "origin": "Turkey",
+    "range_km": 3000,
+    "tags": "fighter jet stealth 5th gen turkish future concept prototype in-development",
+    "description": "Turkey's 5th-generation stealth air superiority fighter (in development/testing)."
+  },
+  {
+    "id": "tempest",
+    "name": "Tempest / GCAP",
+    "type": "aircraft",
+    "origin": "UK/Italy/Japan",
+    "range_km": 3500,
+    "tags": "fighter jet stealth 6th gen future concept prototype in-development european",
+    "description": "Global Combat Air Programme — 6th generation stealth fighter concept."
+  },
+  {
+    "id": "thaad",
+    "name": "THAAD",
+    "type": "sam",
+    "origin": "United States",
+    "range_km": 200,
+    "tags": "air defense terminal high altitude anti-ballistic missile",
+    "description": "Terminal High Altitude Area Defense — intercepts short/medium-range ballistic missiles."
+  },
+  {
+    "id": "torm2",
+    "name": "Tor-M2",
+    "type": "sam",
+    "origin": "Russia",
+    "range_km": 16,
+    "tags": "air defense short range mobile sam",
+    "description": "Short-range mobile SAM system for low-altitude air defense."
+  },
+  {
+    "id": "tu160",
+    "name": "Tu-160 Blackjack",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 12300,
+    "tags": "bomber strategic nuclear nuke supersonic russian",
+    "description": "World's largest and heaviest combat aircraft — supersonic strategic bomber."
+  },
+  {
+    "id": "tu95",
+    "name": "Tu-95 Bear",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 15000,
+    "tags": "bomber strategic nuclear nuke turboprop russian long range",
+    "description": "Russian turboprop strategic bomber with extreme range."
+  },
+  {
+    "id": "u2",
+    "name": "U-2 Dragon Lady",
+    "type": "aircraft",
+    "origin": "United States",
+    "range_km": 11270,
+    "tags": "aircraft recon high altitude spy",
+    "description": "High-altitude reconnaissance aircraft operated by USAF and CIA."
+  },
+  {
+    "id": "trident",
+    "name": "UGM-133A Trident II D5",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 12000,
+    "tags": "slbm nuclear nuke submarine ballistic missile strategic trident",
+    "description": "Submarine-launched ballistic missile — backbone of US/UK sea-based nuclear deterrent."
+  },
+  {
+    "id": "wingloong2",
+    "name": "Wing Loong II",
+    "type": "drone",
+    "origin": "China",
+    "range_km": 1500,
+    "tags": "drone uav ucav male chinese",
+    "description": "Chinese MALE unmanned aerial vehicle for reconnaissance and precision strike."
+  },
+  {
+    "id": "wz7",
+    "name": "WZ-7 Soaring Dragon",
+    "type": "drone",
+    "origin": "China",
+    "range_km": 7000,
+    "tags": "drone uav hale recon chinese",
+    "description": "High-altitude long endurance UAV for reconnaissance and maritime patrol."
+  },
+  {
+    "id": "valkyrie",
+    "name": "XQ-58 Valkyrie",
+    "type": "drone",
+    "origin": "United States",
+    "range_km": 5600,
+    "tags": "drone uav ucav stealth loyal wingman future",
+    "description": "Stealthy unmanned combat aerial vehicle designed to act as a loyal wingman."
+  },
+  {
+    "id": "lancet",
+    "name": "ZALA Lancet",
+    "type": "drone",
+    "origin": "Russia",
+    "range_km": 40,
+    "tags": "drone uav loitering munition kamikaze suicide",
+    "description": "Russian loitering munition and reconnaissance UAV."
+  },
+  {
+    "id": "m1-abrams",
+    "name": "M1 Abrams",
+    "type": "custom",
+    "origin": "United States",
+    "range_km": 4,
+    "tags": "tank mbt armored usa",
+    "description": "American third-generation main battle tank."
+  },
+  {
+    "id": "leopard-2",
+    "name": "Leopard 2",
+    "type": "custom",
+    "origin": "Germany",
+    "range_km": 4,
+    "tags": "tank mbt armored german",
+    "description": "German main battle tank developed by Krauss-Maffei."
+  },
+  {
+    "id": "t-90",
+    "name": "T-90",
+    "type": "custom",
+    "origin": "Russia",
+    "range_km": 5,
+    "tags": "tank mbt armored russian",
+    "description": "Russian third-generation main battle tank."
+  },
+  {
+    "id": "type-99",
+    "name": "Type 99",
+    "type": "custom",
+    "origin": "China",
+    "range_km": 5,
+    "tags": "tank mbt armored chinese",
+    "description": "Chinese third-generation main battle tank."
+  },
+  {
+    "id": "merkava",
+    "name": "Merkava",
+    "type": "custom",
+    "origin": "Israel",
+    "range_km": 4,
+    "tags": "tank mbt armored israeli",
+    "description": "Israeli main battle tank."
+  },
+  {
+    "id": "challenger-2",
+    "name": "Challenger 2",
+    "type": "custom",
+    "origin": "United Kingdom",
+    "range_km": 4,
+    "tags": "tank mbt armored british",
+    "description": "British main battle tank."
+  },
+  {
+    "id": "leclerc",
+    "name": "Leclerc",
+    "type": "custom",
+    "origin": "France",
+    "range_km": 4,
+    "tags": "tank mbt armored french",
+    "description": "French main battle tank."
+  },
+  {
+    "id": "su-57",
+    "name": "Sukhoi Su-57",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 3500,
+    "tags": "fighter jet stealth 5th gen russian",
+    "description": "Russian fifth-generation stealth multirole fighter."
+  },
+  {
+    "id": "su-35",
+    "name": "Sukhoi Su-35",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 3600,
+    "tags": "fighter jet 4th gen russian multirole",
+    "description": "Russian multirole fighter."
+  },
+  {
+    "id": "mig-29",
+    "name": "Mikoyan MiG-29",
+    "type": "aircraft",
+    "origin": "Russia",
+    "range_km": 1430,
+    "tags": "fighter jet 4th gen russian",
+    "description": "Twin-engine fighter aircraft designed in the Soviet Union."
+  },
+  {
+    "id": "j-20",
+    "name": "Chengdu J-20",
+    "type": "aircraft",
+    "origin": "China",
+    "range_km": 5500,
+    "tags": "fighter jet stealth 5th gen chinese",
+    "description": "Chinese fifth-generation stealth fighter aircraft."
+  },
+  {
+    "id": "j-10",
+    "name": "Chengdu J-10",
+    "type": "aircraft",
+    "origin": "China",
+    "range_km": 3200,
+    "tags": "fighter jet 4th gen chinese multirole",
+    "description": "Chinese multirole fighter aircraft."
+  },
+  {
+    "id": "jf-17",
+    "name": "PAC JF-17 Thunder",
+    "type": "aircraft",
+    "origin": "Pakistan",
+    "range_km": 2037,
+    "tags": "fighter jet 4th gen pakistani chinese multirole",
+    "description": "Lightweight, single-engine, multi-role combat aircraft developed jointly by PAC and CAC."
+  },
+  {
+    "id": "mq-9",
+    "name": "MQ-9 Reaper",
+    "type": "drone",
+    "origin": "United States",
+    "range_km": 1900,
+    "tags": "drone uav ucav male usa",
+    "description": "American unmanned aerial vehicle capable of remote controlled or autonomous flight operations."
+  },
+  {
+    "id": "global-hawk",
+    "name": "RQ-4 Global Hawk",
+    "type": "drone",
+    "origin": "United States",
+    "range_km": 22779,
+    "tags": "drone uav hale usa recon surveillance",
+    "description": "High-altitude, long-endurance unmanned aircraft system used for surveillance."
+  },
+  {
+    "id": "wing-loong-2",
+    "name": "Wing Loong II",
+    "type": "drone",
+    "origin": "China",
+    "range_km": 4000,
+    "tags": "drone uav ucav chinese male",
+    "description": "Chinese unmanned aerial vehicle (UAV) capable of remotely controlled or autonomous flight."
+  },
+  {
+    "id": "shahed-136",
+    "name": "Shahed 136",
+    "type": "drone",
+    "origin": "Iran",
+    "range_km": 2500,
+    "tags": "drone uav loitering munition iranian kamikaze",
+    "description": "Iranian loitering munition in the form of an autonomous swarm pusher-prop drone."
+  },
+  {
+    "id": "s-400",
+    "name": "S-400 Triumf",
+    "type": "sam",
+    "origin": "Russia",
+    "range_km": 400,
+    "tags": "air defense sam russian anti-ballistic",
+    "description": "Russian mobile, surface-to-air missile (SAM) system."
+  },
+  {
+    "id": "s-300",
+    "name": "S-300",
+    "type": "sam",
+    "origin": "Russia",
+    "range_km": 150,
+    "tags": "air defense sam russian",
+    "description": "Series of initially Soviet and later Russian long range surface-to-air missile systems."
+  },
+  {
+    "id": "arrow-2",
+    "name": "Arrow 2",
+    "type": "sam",
+    "origin": "Israel",
+    "range_km": 150,
+    "tags": "air defense sam israeli anti-ballistic",
+    "description": "Israeli anti-ballistic missile system."
+  },
+  {
+    "id": "hq-9",
+    "name": "HQ-9",
+    "type": "sam",
+    "origin": "China",
+    "range_km": 300,
+    "tags": "air defense sam chinese",
+    "description": "China's medium- to long-range, active radar homing surface-to-air missile."
+  },
+  {
+    "id": "minuteman-3",
+    "name": "LGM-30 Minuteman III",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 13000,
+    "tags": "missile icbm nuclear ballistic usa silo",
+    "description": "American land-based intercontinental ballistic missile (ICBM)."
+  },
+  {
+    "id": "trident-d5",
+    "name": "UGM-133 Trident II",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 12000,
+    "tags": "missile slbm nuclear ballistic usa submarine",
+    "description": "Submarine-launched ballistic missile (SLBM)."
+  },
+  {
+    "id": "rs-28",
+    "name": "RS-28 Sarmat",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 18000,
+    "tags": "missile icbm nuclear ballistic russian heavy silo",
+    "description": "Russian liquid-fueled, MIRV-equipped super-heavy intercontinental ballistic missile."
+  },
+  {
+    "id": "df-26",
+    "name": "DF-26",
+    "type": "missile",
+    "origin": "China",
+    "range_km": 4000,
+    "tags": "missile irbm anti-ship chinese ballistic",
+    "description": "Chinese intermediate-range ballistic missile."
+  },
+  {
+    "id": "prithvi-ii",
+    "name": "Prithvi-II",
+    "type": "missile",
+    "origin": "India",
+    "range_km": 350,
+    "tags": "missile srbm ballistic indian tactical",
+    "description": "Indian short-range ballistic missile."
+  },
+  {
+    "id": "ghaznavi",
+    "name": "Ghaznavi",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 290,
+    "tags": "missile srbm ballistic pakistani",
+    "description": "Pakistani hypersonic and surface to surface short range ballistic missile."
+  },
+  {
+    "id": "nasr",
+    "name": "Nasr",
+    "type": "missile",
+    "origin": "Pakistan",
+    "range_km": 70,
+    "tags": "missile srbm ballistic pakistani tactical nuclear",
+    "description": "Pakistani solid fueled tactical ballistic missile."
+  },
+  {
+    "id": "type-094",
+    "name": "Type 094 Submarine",
+    "type": "navy",
+    "origin": "China",
+    "range_km": 8000,
+    "tags": "navy ship submarine ssbn chinese nuclear",
+    "description": "Class of ballistic missile submarines built for the People's Liberation Army Navy."
+  },
+  {
+    "id": "astute",
+    "name": "Astute-class Submarine",
+    "type": "navy",
+    "origin": "United Kingdom",
+    "range_km": 3000,
+    "tags": "navy ship submarine ssn british nuclear fleet",
+    "description": "Class of nuclear-powered fleet submarines in service with the Royal Navy."
+  },
+  {
+    "id": "ohio-class",
+    "name": "Ohio-class Submarine",
+    "type": "navy",
+    "origin": "United States",
+    "range_km": 10000,
+    "tags": "navy ship submarine ssbn usa nuclear ballistic",
+    "description": "Class of nuclear-powered submarines used by the United States Navy."
+  },
+  {
+    "id": "yasen",
+    "name": "Yasen-class Submarine",
+    "type": "navy",
+    "origin": "Russia",
+    "range_km": 5000,
+    "tags": "navy ship submarine ssn russian nuclear cruise missile",
+    "description": "Series of the newest nuclear-powered cruise missile submarines."
+  },
+  {
+    "id": "kiev",
+    "name": "Kiev-class Aircraft Carrier",
+    "type": "navy",
+    "origin": "Russia",
+    "range_km": 1000,
+    "tags": "navy ship carrier russian aviation cruiser",
+    "description": "Class of aircraft carriers (heavy aviation cruisers) that served the Soviet and Russian navies."
+  },
+  {
+    "id": "rs-28-test",
+    "name": "RS-28 Sarmat (Test May 2026)",
+    "type": "missile",
+    "origin": "Russia",
+    "range_km": 18000,
+    "tags": "missile icbm new nuclear russian test-2026",
+    "description": "Successfully tested heavy ICBM by Russia in May 2026."
+  },
+  {
+    "id": "lrhw-dark-eagle",
+    "name": "LRHW / Dark Eagle (Test Mar 2026)",
+    "type": "missile",
+    "origin": "United States",
+    "range_km": 2775,
+    "tags": "missile hypersonic new usa test-2026",
+    "description": "US Army Long-Range Hypersonic Weapon tested March 26, 2026."
+  },
+  {
+    "id": "hwasong-11-test",
+    "name": "Hwasong-11 (Test Apr 2026)",
+    "type": "missile",
+    "origin": "North Korea",
+    "range_km": 500,
+    "tags": "missile srbm new north-korean test-2026",
+    "description": "Tactical ballistic missile tested April 2026."
+  }
+]

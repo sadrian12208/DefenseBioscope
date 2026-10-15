@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="DefenseBioscope — Interactive military systems coverage visualizer. Explore missile ranges, air defense zones, and fighter jet operational radii on a world map." />
+  <title>DefenseBioscope — Military Systems Coverage Visualizer</title>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('defensebioscope_theme') || 'dark';
+        if (t === 'light') {
+          document.documentElement.classList.add('theme-light');
+          document.addEventListener('DOMContentLoaded', function () {
+            if (document.body) document.body.classList.add('theme-light');
+          });
+        } else {
+          document.documentElement.classList.remove('theme-light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    html, body, #root {
+      background-color: #12151e;
+      color: #f0f3f8;
+      margin: 0;
+      padding: 0;
+    }
+    html.theme-light, body.theme-light, .theme-light #root {
+      background-color: #f1f5f9 !important;
+      color: #0f172a !important;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

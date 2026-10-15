@@ -10,6 +10,7 @@ function App() {
   const [selectedSystem, setSelectedSystem] = useState(null)
   const [placingMode, setPlacingMode] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [mobileExpanded, setMobileExpanded] = useState(false)
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('defensebioscope_theme') || 'dark'
   })
@@ -113,6 +114,7 @@ function App() {
   const handleSelectSystem = useCallback((system) => {
     setSelectedSystem(system)
     setPlacingMode(true)
+    setMobileExpanded(false)
   }, [])
 
   const handleMapClick = useCallback((latlng) => {
@@ -157,6 +159,7 @@ function App() {
     }
     setSelectedSystem(system)
     setPlacingMode(true)
+    setMobileExpanded(false)
   }, [])
 
   const handleGoToLocation = useCallback((lat, lng, zoom = 6) => {
@@ -182,6 +185,8 @@ function App() {
         onToggleSidebar={() => setSidebarOpen(prev => !prev)}
         onToggleLayers={() => setLayerPanelOpen(prev => !prev)}
         sidebarOpen={sidebarOpen}
+        mobileExpanded={mobileExpanded}
+        onToggleMobileSheet={() => setMobileExpanded(prev => !prev)}
         onGoToLocation={handleGoToLocation}
         theme={theme}
         onToggleTheme={handleToggleTheme}
@@ -232,6 +237,9 @@ function App() {
           visibleTypes={visibleTypes}
           onToggleType={handleToggleType}
           selectedSystem={selectedSystem}
+          expanded={mobileExpanded}
+          onToggleExpanded={() => setMobileExpanded(prev => !prev)}
+          onClose={() => setMobileExpanded(false)}
         />
       </div>
     </div>

@@ -43,6 +43,8 @@ export default function TopBar({
   onToggleSidebar,
   onToggleLayers,
   sidebarOpen,
+  mobileExpanded,
+  onToggleMobileSheet,
   onGoToLocation,
   theme = 'dark',
   onToggleTheme,
@@ -89,18 +91,24 @@ export default function TopBar({
   }
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-[1001] pointer-events-none p-2 sm:p-3">
-      <div className="flex items-center justify-between gap-2 max-w-7xl mx-auto">
+    <header className="absolute top-0 left-0 right-0 z-[1001] pointer-events-none p-1.5 sm:p-3">
+      <div className="flex items-center justify-between gap-1.5 sm:gap-2 max-w-7xl mx-auto">
         {/* Left Section: Sidebar Toggle & Brand Title */}
-        <div className="flex items-center gap-2 pointer-events-auto shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 pointer-events-auto shrink-0">
           <button
-            onClick={onToggleSidebar}
-            className="nm-btn w-11 h-11 rounded-xl text-text-primary hover:text-white"
+            onClick={() => {
+              if (window.innerWidth <= 768 && onToggleMobileSheet) {
+                onToggleMobileSheet()
+              } else if (onToggleSidebar) {
+                onToggleSidebar()
+              }
+            }}
+            className="nm-btn w-10 sm:w-11 h-10 sm:h-11 rounded-xl text-text-primary hover:text-white"
             title={sidebarOpen ? 'Collapse Systems Panel' : 'Expand Systems Panel'}
             aria-label="Toggle Systems Panel"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {sidebarOpen ? (
+              {sidebarOpen || mobileExpanded ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
               ) : (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M4 6h16M4 12h16M4 18h16" />
@@ -108,10 +116,19 @@ export default function TopBar({
             </svg>
           </button>
 
+          {/* Desktop Brand */}
           <div className="hidden sm:flex items-center gap-2.5 h-11 px-3.5 nm-card border border-white/5 select-none">
             <IconCrosshair className="w-4 h-4 text-accent-blue" />
             <span className="text-xs font-black tracking-wider uppercase text-text-primary">
               DefenseBioscope
+            </span>
+          </div>
+
+          {/* Mobile Brand */}
+          <div className="flex sm:hidden items-center gap-1.5 h-10 px-2 nm-card border border-white/5 select-none shrink-0">
+            <IconCrosshair className="w-3.5 h-3.5 text-accent-blue" />
+            <span className="text-[10.5px] font-black uppercase text-text-primary tracking-wide">
+              BIOSCOPE
             </span>
           </div>
         </div>
@@ -120,8 +137,8 @@ export default function TopBar({
         <div className="flex-1 max-w-md pointer-events-auto min-w-0 mx-1" ref={wrapperRef}>
           {!coordInput ? (
             <div className="relative flex items-center">
-              <span className="absolute left-3.5 z-10 pointer-events-none text-text-muted flex items-center">
-                <IconSearch className="w-4 h-4" />
+              <span className="absolute left-2.5 sm:left-3.5 z-10 pointer-events-none text-text-muted flex items-center">
+                <IconSearch className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
               </span>
               <input
                 type="text"
@@ -131,19 +148,19 @@ export default function TopBar({
                   setShowSuggestions(true)
                 }}
                 onFocus={() => setShowSuggestions(true)}
-                placeholder="Search city or theater..."
-                style={{ paddingLeft: '38px', paddingRight: '38px' }}
-                className="nm-input w-full h-11 rounded-xl text-xs sm:text-sm font-medium"
+                placeholder="Search city / theater..."
+                style={{ paddingLeft: '32px', paddingRight: '32px' }}
+                className="nm-input w-full h-10 sm:h-11 rounded-xl text-xs sm:text-sm font-medium"
               />
 
               <button
                 type="button"
                 onClick={() => setCoordInput(true)}
-                className="absolute right-2.5 p-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-white/5 transition-all cursor-pointer flex items-center"
+                className="absolute right-2 p-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-white/5 transition-all cursor-pointer flex items-center"
                 title="Input exact coordinates"
                 aria-label="Input exact coordinates"
               >
-                <IconPin className="w-4 h-4" />
+                <IconPin className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
               </button>
 
               {showSuggestions && suggestions.length > 0 && (
@@ -171,7 +188,7 @@ export default function TopBar({
                 value={lat}
                 onChange={(e) => setLat(e.target.value)}
                 placeholder="Lat"
-                className="nm-input w-24 sm:w-28 h-11 px-2.5 rounded-xl text-xs text-center font-mono"
+                className="nm-input w-20 sm:w-28 h-10 sm:h-11 px-2 rounded-xl text-xs text-center font-mono"
               />
               <input
                 type="number"
@@ -179,12 +196,12 @@ export default function TopBar({
                 value={lng}
                 onChange={(e) => setLng(e.target.value)}
                 placeholder="Lng"
-                className="nm-input w-24 sm:w-28 h-11 px-2.5 rounded-xl text-xs text-center font-mono"
+                className="nm-input w-20 sm:w-28 h-10 sm:h-11 px-2 rounded-xl text-xs text-center font-mono"
               />
               <button
                 type="button"
                 onClick={() => setCoordInput(false)}
-                className="nm-btn h-11 w-11 rounded-xl text-text-muted hover:text-accent-red"
+                className="nm-btn h-10 sm:h-11 w-10 sm:w-11 rounded-xl text-text-muted hover:text-accent-red"
                 aria-label="Cancel coordinates"
               >
                 <IconClose className="w-4 h-4" />
@@ -198,17 +215,17 @@ export default function TopBar({
 
       {/* Target Placement Status Banner */}
       {placingMode && selectedSystem && (
-        <div className="mt-2 max-w-md mx-auto pointer-events-auto">
-          <div className="nm-card px-4 py-2.5 flex items-center justify-between border-accent-blue/40">
-            <div className="flex items-center gap-2.5 min-w-0">
+        <div className="mt-1.5 sm:mt-2 max-w-md mx-auto pointer-events-auto px-2">
+          <div className="nm-card px-3 sm:px-4 py-2 sm:py-2.5 flex items-center justify-between border-accent-blue/40 shadow-lg">
+            <div className="flex items-center gap-2 min-w-0">
               <span className="w-2 h-2 rounded-full bg-accent-blue animate-pulse shrink-0"></span>
-              <span className="text-xs text-text-primary font-medium truncate">
-                Click map to deploy <strong>{selectedSystem.name}</strong> ({selectedSystem.range_km} km)
+              <span className="text-[11px] sm:text-xs text-text-primary font-medium truncate">
+                Tap map to deploy <strong>{selectedSystem.name}</strong> ({selectedSystem.range_km} km)
               </span>
             </div>
             <button
               onClick={onCancelPlacing}
-              className="ml-2 text-xs font-bold text-text-muted hover:text-accent-red px-2 py-1 rounded nm-btn"
+              className="ml-2 text-xs font-bold text-text-muted hover:text-accent-red px-2 py-1 rounded nm-btn shrink-0"
             >
               Cancel
             </button>

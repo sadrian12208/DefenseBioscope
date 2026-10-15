@@ -1613,7 +1613,7 @@
   {
     "id": "m1-abrams",
     "name": "M1 Abrams",
-    "type": "custom",
+    "type": "tank",
     "origin": "United States",
     "range_km": 4,
     "tags": "tank mbt armored usa",
@@ -1622,7 +1622,7 @@
   {
     "id": "leopard-2",
     "name": "Leopard 2",
-    "type": "custom",
+    "type": "tank",
     "origin": "Germany",
     "range_km": 4,
     "tags": "tank mbt armored german",
@@ -1631,7 +1631,7 @@
   {
     "id": "t-90",
     "name": "T-90",
-    "type": "custom",
+    "type": "tank",
     "origin": "Russia",
     "range_km": 5,
     "tags": "tank mbt armored russian",
@@ -1640,7 +1640,7 @@
   {
     "id": "type-99",
     "name": "Type 99",
-    "type": "custom",
+    "type": "tank",
     "origin": "China",
     "range_km": 5,
     "tags": "tank mbt armored chinese",
@@ -1649,7 +1649,7 @@
   {
     "id": "merkava",
     "name": "Merkava",
-    "type": "custom",
+    "type": "tank",
     "origin": "Israel",
     "range_km": 4,
     "tags": "tank mbt armored israeli",
@@ -1658,7 +1658,7 @@
   {
     "id": "challenger-2",
     "name": "Challenger 2",
-    "type": "custom",
+    "type": "tank",
     "origin": "United Kingdom",
     "range_km": 4,
     "tags": "tank mbt armored british",
@@ -1667,7 +1667,7 @@
   {
     "id": "leclerc",
     "name": "Leclerc",
-    "type": "custom",
+    "type": "tank",
     "origin": "France",
     "range_km": 4,
     "tags": "tank mbt armored french",

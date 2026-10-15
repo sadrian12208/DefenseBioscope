@@ -20,8 +20,16 @@ import {
   IconExternalLink,
   IconGlobe,
   IconMap,
+  IconSwords,
+  IconMilitaryBase,
   IconClose,
+  Icon3DTank,
 } from './Icons'
+import {
+  getInitialMilitaryBases,
+  fetchBaseLiveWiki,
+  scanLiveWikiBasesInViewport,
+} from '../services/militaryBasesService'
 
 const TYPE_COLORS = {
   sam: '#06b6d4',
@@ -29,7 +37,8 @@ const TYPE_COLORS = {
   aircraft: '#a855f7',
   drone: '#10b981',
   navy: '#3b82f6',
-  custom: '#f59e0b',
+  tank: '#10b981',
+  custom: '#10b981',
 }
 
 const TYPE_LABELS = {
@@ -38,6 +47,7 @@ const TYPE_LABELS = {
   aircraft: 'Aircraft',
   drone: 'Drone / UAV',
   navy: 'Navy / Ship',
+  tank: 'Tank / Armor',
   custom: 'Custom',
 }
 
@@ -53,6 +63,8 @@ function renderTypeIcon(type, className = 'w-6 h-6') {
       return <Icon3DDrone className={className} />
     case 'navy':
       return <Icon3DWarship className={className} />
+    case 'tank':
+      return <Icon3DTank className={className} />
     case 'custom':
     default:
       return <Icon3DCustom className={className} />
@@ -89,6 +101,29 @@ function formatRange(km) {
 const DARK_STYLE_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json'
 const LIGHT_STYLE_URL = 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json'
 
+function ensurePinIcon(map) {
+  if (!map || map.hasImage('location-pin-icon')) return
+  try {
+    const size = 32
+    const canvas = document.createElement('canvas')
+    canvas.width = size
+    canvas.height = size
+    const ctx = canvas.getContext('2d')
+
+    // Sharp teardrop location pin with inner hole (SDF compatible)
+    const pin = new Path2D(
+      'M16 2 C10.48 2 6 6.48 6 12 C6 19.5 16 30 16 30 C16 30 26 19.5 26 12 C26 6.48 21.52 2 16 2 Z'
+    )
+    pin.arc(16, 12, 3.5, 0, Math.PI * 2)
+
+    ctx.fillStyle = '#ffffff'
+    ctx.fill(pin, 'evenodd')
+
+    const imgData = ctx.getImageData(0, 0, size, size)
+    map.addImage('location-pin-icon', imgData, { sdf: true })
+  } catch {}
+}
+
 export default function MapView({
   placedSystems,
   visibleTypes,
@@ -108,6 +143,150 @@ export default function MapView({
   const [cursor, setCursor] = useState(null)
   const [isFlat, setIsFlat] = useState(false)
 
+  // Global Military Bases Layer (Live Wikipedia ⚔)
+  const [showMilitaryBases, setShowMilitaryBases] = useState(false)
+  const [militaryBases, setMilitaryBases] = useState(() => {
+    const initial = getInitialMilitaryBases()
+    try {
+      const stored = localStorage.getItem('defensebioscope_live_discovered_bases')
+      if (stored) {
+        const extra = JSON.parse(stored)
+        if (Array.isArray(extra) && extra.length > 0) {
+          const existingIds = new Set(initial.map((b) => b.id))
+          const existingNames = new Set(initial.map((b) => b.name.toLowerCase()))
+          for (const item of extra) {
+            if (!existingIds.has(item.id) && !existingNames.has(item.name.toLowerCase())) {
+              initial.push(item)
+            }
+          }
+        }
+      }
+    } catch {}
+    return initial
+  })
+  const [militaryStatusFilter, setMilitaryStatusFilter] = useState('all')
+  const [selectedMilitaryBase, setSelectedMilitaryBase] = useState(null)
+  const [baseLiveWiki, setBaseLiveWiki] = useState(null)
+  const [isLoadingBaseWiki, setIsLoadingBaseWiki] = useState(false)
+  const [isScanningBases, setIsScanningBases] = useState(false)
+
+  // Silent Real-Time Wikipedia Auto-Discovery Engine (Works in 2027, 2030, 2050 forever)
+  const scannedCoordsRef = useRef(new Set())
+  const autoScanTimerRef = useRef(null)
+
+  const scanCurrentViewport = useCallback(async () => {
+    if (!showMilitaryBases || !mapRef.current) return
+    try {
+      const map = mapRef.current.getMap ? mapRef.current.getMap() : mapRef.current
+      if (!map) return
+
+      const center = map.getCenter()
+      const zoom = map.getZoom()
+      if (zoom < 3.0) return // Focus on regional or country scale
+
+      const coordKey = `${center.lat.toFixed(1)}_${center.lng.toFixed(1)}`
+      if (scannedCoordsRef.current.has(coordKey)) return
+      scannedCoordsRef.current.add(coordKey)
+
+      if (scannedCoordsRef.current.size > 250) {
+        scannedCoordsRef.current.clear()
+        scannedCoordsRef.current.add(coordKey)
+      }
+
+      setIsScanningBases(true)
+      const discovered = await scanLiveWikiBasesInViewport(center.lat, center.lng, 10)
+      setIsScanningBases(false)
+
+      if (!discovered || discovered.length === 0) return
+
+      setMilitaryBases((prev) => {
+        const existingNames = new Set(prev.map((b) => b.name.toLowerCase()))
+        const existingWiki = new Set(prev.map((b) => (b.wiki_title || '').toLowerCase()))
+        const newItems = []
+
+        for (const base of discovered) {
+          const nameLower = base.name.toLowerCase()
+          const wikiLower = (base.wiki_title || '').toLowerCase()
+
+          const isNearby = prev.some((b) => {
+            const dLat = Math.abs(b.lat - base.lat)
+            const dLng = Math.abs(b.lng - base.lng)
+            return dLat < 0.025 && dLng < 0.025
+          })
+
+          if (!existingNames.has(nameLower) && !existingWiki.has(wikiLower) && !isNearby) {
+            newItems.push(base)
+            existingNames.add(nameLower)
+          }
+        }
+
+        if (newItems.length === 0) return prev
+
+        const updated = [...prev, ...newItems]
+        try {
+          const stored = localStorage.getItem('defensebioscope_live_discovered_bases')
+          const prevStored = stored ? JSON.parse(stored) : []
+          const combined = [...prevStored, ...newItems]
+          localStorage.setItem('defensebioscope_live_discovered_bases', JSON.stringify(combined.slice(-300)))
+        } catch {}
+
+        return updated
+      })
+    } catch {
+      setIsScanningBases(false)
+    }
+  }, [showMilitaryBases])
+
+  useEffect(() => {
+    if (!showMilitaryBases) return
+    if (autoScanTimerRef.current) clearTimeout(autoScanTimerRef.current)
+    autoScanTimerRef.current = setTimeout(scanCurrentViewport, 900)
+    return () => {
+      if (autoScanTimerRef.current) clearTimeout(autoScanTimerRef.current)
+    }
+  }, [showMilitaryBases, scanCurrentViewport])
+
+  const filteredBases = useMemo(() => {
+    if (militaryStatusFilter === 'all') return militaryBases
+    return militaryBases.filter((b) => b.status === militaryStatusFilter)
+  }, [militaryBases, militaryStatusFilter])
+
+  const baseCounts = useMemo(() => {
+    const counts = { all: militaryBases.length, active: 0, temporary: 0, decommissioned: 0 }
+    for (const b of militaryBases) {
+      const s = b.status || 'active'
+      if (counts[s] !== undefined) counts[s]++
+      else counts.active++
+    }
+    return counts
+  }, [militaryBases])
+
+  const basesGeoJson = useMemo(
+    () => ({
+      type: 'FeatureCollection',
+      features: filteredBases.map((b) => ({
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [b.lng, b.lat] },
+        properties: {
+          id: b.id,
+          status: b.status || 'active',
+          name: b.name,
+          country: b.country,
+          wiki_title: b.wiki_title || '',
+          command: b.command || b.operator || '',
+          operator: b.operator || '',
+          type: b.type || '',
+          category: b.category || '',
+          summary: b.summary || '',
+          wiki_url: b.wiki_url || '',
+          lat: b.lat,
+          lng: b.lng,
+        },
+      })),
+    }),
+    [filteredBases]
+  )
+
   // Derive active placement in real time from placedSystems so dragging keeps marker & popup 100% in sync
   const activePlacement = useMemo(
     () => placedSystems.find((p) => p.id === selectedPlacementId) || null,
@@ -125,12 +304,47 @@ export default function MapView({
       const w = container.clientWidth
       const h = container.clientHeight
 
-      // If marker is in upper 48% of screen, anchor='top' (popup opens downwards into safe space)
-      // If marker is in lower 52% of screen, anchor='bottom' (popup opens upwards into safe space)
-      let anchor = point.y < h * 0.48 ? 'top' : 'bottom'
-      if (point.x > w * 0.65) anchor += '-right'
-      else if (point.x < w * 0.35) anchor += '-left'
-      setPopupAnchor(anchor)
+      // Top navbar takes 55-60px. Opening upwards requires ~280px above the point.
+      // If marker is in upper 52% of screen (or <360px from top), anchor='top' (popup opens downwards into spacious area).
+      // If marker is in lower 48% of screen, anchor='bottom' (popup opens upwards safely).
+      let vertical = point.y < Math.max(340, h * 0.52) ? 'top' : 'bottom'
+      let horizontal = ''
+      if (point.x > w * 0.65) horizontal = '-right'
+      else if (point.x < w * 0.35) horizontal = '-left'
+      setPopupAnchor(vertical + horizontal)
+    } catch {}
+  }, [])
+
+  // Nudge map slightly if selected point is too close to screen edges (e.g. behind header)
+  const ensurePointInSafeBounds = useCallback((lng, lat) => {
+    if (!mapRef.current) return
+    try {
+      const map = mapRef.current.getMap ? mapRef.current.getMap() : mapRef.current
+      if (!map) return
+      const point = map.project([lng, lat])
+      const container = map.getContainer()
+      const w = container.clientWidth
+      const h = container.clientHeight
+
+      let panX = 0
+      let panY = 0
+
+      // Top edge safety: navbar is 60px; ensure point has comfortable space
+      if (point.y < 120) {
+        panY = point.y - 140
+      } else if (point.y > h - 120) {
+        panY = point.y - (h - 140)
+      }
+
+      if (point.x < 150) {
+        panX = point.x - 170
+      } else if (point.x > w - 150) {
+        panX = point.x - (w - 170)
+      }
+
+      if (panX !== 0 || panY !== 0) {
+        map.panBy([panX, panY], { duration: 350 })
+      }
     } catch {}
   }, [])
 
@@ -173,13 +387,78 @@ export default function MapView({
     }
   }, [mapCenter, mapZoom])
 
+  const handleSelectMilitaryBase = useCallback(
+    async (base) => {
+      setSelectedMilitaryBase(base)
+      setSelectedPlacementId(null)
+      updateAnchorForPoint(base.lng, base.lat)
+      ensurePointInSafeBounds(base.lng, base.lat)
+      setBaseLiveWiki(null)
+      setIsLoadingBaseWiki(true)
+
+      try {
+        const liveData = await fetchBaseLiveWiki(base.wiki_title || base.name)
+        setBaseLiveWiki(liveData)
+      } catch {
+        // Fallback silently
+      } finally {
+        setIsLoadingBaseWiki(false)
+      }
+    },
+    [updateAnchorForPoint, ensurePointInSafeBounds]
+  )
+
+  const handleScanViewportBases = useCallback(async () => {
+    if (!mapRef.current) return
+    setIsScanningBases(true)
+    try {
+      const map = mapRef.current.getMap ? mapRef.current.getMap() : mapRef.current
+      const center = map.getCenter()
+      const newBases = await scanLiveWikiBasesInViewport(center.lat, center.lng, 25)
+      if (newBases && newBases.length > 0) {
+        setMilitaryBases((prev) => {
+          const existingIds = new Set(prev.map((b) => b.id))
+          const additions = newBases.filter((b) => !existingIds.has(b.id))
+          return [...prev, ...additions]
+        })
+      }
+    } catch {
+      // Handled silently
+    } finally {
+      setIsScanningBases(false)
+    }
+  }, [])
+
   const handleClick = useCallback(
     (e) => {
+      // Check if a military base feature was clicked on the native WebGL layer
+      if (showMilitaryBases && e.features && e.features.length > 0) {
+        const baseFeature = e.features.find(
+          (f) => f.layer.id === 'military-bases-symbol' || f.layer.id === 'military-bases-circle'
+        )
+        if (baseFeature) {
+          const baseId = baseFeature.properties?.id
+          const matched = militaryBases.find((b) => b.id === baseId)
+          if (matched) {
+            handleSelectMilitaryBase(matched)
+            return
+          } else if (baseFeature.properties) {
+            handleSelectMilitaryBase({
+              ...baseFeature.properties,
+              lat: Number(baseFeature.properties.lat),
+              lng: Number(baseFeature.properties.lng),
+            })
+            return
+          }
+        }
+      }
+
+      setSelectedMilitaryBase(null)
       if (placingMode) {
         onMapClick({ lat: e.lngLat.lat, lng: e.lngLat.lng })
       }
     },
-    [placingMode, onMapClick]
+    [showMilitaryBases, militaryBases, handleSelectMilitaryBase, placingMode, onMapClick]
   )
 
   const handleMouseMove = useCallback(
@@ -192,7 +471,7 @@ export default function MapView({
   )
 
   const visiblePlacements = useMemo(
-    () => placedSystems.filter((p) => p.visible && visibleTypes[p.system.type]),
+    () => placedSystems.filter((p) => p.visible && (visibleTypes[p.system.type] ?? true)),
     [placedSystems, visibleTypes]
   )
 
@@ -251,6 +530,7 @@ export default function MapView({
 
   const applyMapStyles = useCallback((map) => {
     if (!map) return
+    ensurePinIcon(map)
     const currentTheme = themeRef.current
     const currentFlat = isFlatRef.current
 
@@ -346,9 +626,11 @@ export default function MapView({
 
   const handleMapLoad = useCallback((e) => {
     const map = e.target
+    ensurePinIcon(map)
     applyMapStyles(map)
 
     map.on('style.load', () => {
+      ensurePinIcon(map)
       applyMapStyles(map)
     })
   }, [applyMapStyles])
@@ -358,6 +640,7 @@ export default function MapView({
     if (mapRef.current) {
       const map = mapRef.current.getMap ? mapRef.current.getMap() : mapRef.current
       if (map && map.isStyleLoaded()) {
+        ensurePinIcon(map)
         applyMapStyles(map)
       }
     }
@@ -383,11 +666,30 @@ export default function MapView({
           padding={{ top: 55, bottom: 15, left: 0, right: 0 }}
           style={{ width: '100%', height: '100%' }}
           mapStyle={theme === 'dark' ? DARK_STYLE_URL : LIGHT_STYLE_URL}
+          interactiveLayerIds={showMilitaryBases ? ['military-bases-symbol'] : undefined}
           onClick={handleClick}
           onMouseMove={handleMouseMove}
+          onMouseEnter={(e) => {
+            if (e.features && e.features.length > 0) {
+              const map = mapRef.current?.getMap ? mapRef.current.getMap() : mapRef.current
+              if (map) map.getCanvas().style.cursor = 'pointer'
+            }
+          }}
+          onMouseLeave={() => {
+            const map = mapRef.current?.getMap ? mapRef.current.getMap() : mapRef.current
+            if (map) map.getCanvas().style.cursor = placingMode ? 'crosshair' : ''
+          }}
           onMove={() => {
             if (activePlacement) {
               updateAnchorForPoint(activePlacement.position.lng, activePlacement.position.lat)
+            } else if (selectedMilitaryBase) {
+              updateAnchorForPoint(selectedMilitaryBase.lng, selectedMilitaryBase.lat)
+            }
+          }}
+          onMoveEnd={() => {
+            if (showMilitaryBases) {
+              if (autoScanTimerRef.current) clearTimeout(autoScanTimerRef.current)
+              autoScanTimerRef.current = setTimeout(scanCurrentViewport, 700)
             }
           }}
           cursor={placingMode ? 'crosshair' : undefined}
@@ -584,6 +886,50 @@ export default function MapView({
             )
           })}
 
+          {/* Global Military Bases — GPU-accelerated native MapLibre Layer (Location Pin Icons) */}
+          {showMilitaryBases && (
+            <Source id="military-bases-src" type="geojson" data={basesGeoJson}>
+              <Layer
+                id="military-bases-symbol"
+                type="symbol"
+                layout={{
+                  'icon-image': 'location-pin-icon',
+                  'icon-size': [
+                    'interpolate', ['linear'], ['zoom'],
+                    1, 0.45,
+                    3, 0.58,
+                    6, 0.78,
+                    9, 1.0,
+                    12, 1.25,
+                  ],
+                  'icon-anchor': 'bottom',
+                  'icon-allow-overlap': true,
+                  'icon-ignore-placement': true,
+                }}
+                paint={{
+                  'icon-color': [
+                    'match', ['get', 'status'],
+                    'decommissioned', '#fb7185',
+                    'temporary', '#fbbf24',
+                    '#34d399',
+                  ],
+                  'icon-halo-color': [
+                    'case',
+                    ['==', ['get', 'id'], selectedMilitaryBase?.id || ''],
+                    '#ffffff',
+                    '#0b1120',
+                  ],
+                  'icon-halo-width': [
+                    'case',
+                    ['==', ['get', 'id'], selectedMilitaryBase?.id || ''],
+                    2.5,
+                    1.2,
+                  ],
+                }}
+              />
+            </Source>
+          )}
+
           {/* MapLibre 3D Pitch/Bearing Navigation Control (Interactive Compass Needle) */}
           <NavigationControl position="bottom-right" visualizePitch={true} />
 
@@ -613,11 +959,158 @@ export default function MapView({
               />
             </Popup>
           )}
+
+          {/* Military Base Live Wikipedia Intelligence Popup */}
+          {selectedMilitaryBase && (
+            <Popup
+              longitude={selectedMilitaryBase.lng}
+              latitude={selectedMilitaryBase.lat}
+              anchor={popupAnchor}
+              offset={14}
+              onClose={() => setSelectedMilitaryBase(null)}
+              closeButton={false}
+              closeOnClick={false}
+              className="system-popup-gl"
+              maxWidth="330px"
+            >
+              <MilitaryBasePopupContent
+                base={selectedMilitaryBase}
+                liveWiki={baseLiveWiki}
+                loading={isLoadingBaseWiki}
+                onClose={() => setSelectedMilitaryBase(null)}
+              />
+            </Popup>
+          )}
         </Map>
       </div>
 
-      {/* Floating Tactical Controls: Flat Earth & Theme Toggle Buttons */}
-      <div className="fixed right-[14px] bottom-[146px] z-[1001] flex flex-col gap-1.5 pointer-events-auto">
+      {/* Floating Tactical Controls: Military Bases, Flat Earth & Theme Toggle Buttons */}
+      <div className="map-floating-controls">
+        {/* Status Filter Buttons (2 Tiers: All & Active on top, Temp & Closed directly below) */}
+        {showMilitaryBases && (
+          <div className="flex flex-col gap-1 mb-1.5 select-none items-end">
+            {/* Tier 1: All & Active side-by-side */}
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => setMilitaryStatusFilter('all')}
+                className={`px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase transition-all cursor-pointer shadow-md flex items-center justify-between gap-1.5 border rounded-none min-w-[92px] ${
+                  militaryStatusFilter === 'all'
+                    ? 'bg-emerald-500 text-slate-950 border-emerald-400 font-extrabold shadow-emerald-500/25'
+                    : 'bg-slate-950/90 text-slate-300 border-slate-700/80 hover:border-slate-500 hover:text-white backdrop-blur-md'
+                }`}
+                title="Show all military bases"
+              >
+                <span>All</span>
+                <span
+                  className={`text-[9px] px-1 py-0.2 font-mono ${
+                    militaryStatusFilter === 'all'
+                      ? 'bg-slate-950/25 text-slate-950 font-black'
+                      : 'bg-slate-800 text-slate-400'
+                  }`}
+                >
+                  {baseCounts.all}
+                </span>
+              </button>
+              <button
+                onClick={() => setMilitaryStatusFilter('active')}
+                className={`px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase transition-all cursor-pointer shadow-md flex items-center justify-between gap-1.5 border rounded-none min-w-[92px] ${
+                  militaryStatusFilter === 'active'
+                    ? 'bg-emerald-500 text-slate-950 border-emerald-400 font-extrabold shadow-emerald-500/25'
+                    : 'bg-slate-950/90 text-emerald-400 border-emerald-500/40 hover:border-emerald-400 hover:text-emerald-300 backdrop-blur-md'
+                }`}
+                title="Show operational active bases"
+              >
+                <span className="flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                  <span>Active</span>
+                </span>
+                <span
+                  className={`text-[9px] px-1 py-0.2 font-mono ${
+                    militaryStatusFilter === 'active'
+                      ? 'bg-slate-950/25 text-slate-950 font-black'
+                      : 'bg-slate-800 text-emerald-400'
+                  }`}
+                >
+                  {baseCounts.active}
+                </span>
+              </button>
+            </div>
+
+            {/* Tier 2: Temp & Closed right below */}
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => setMilitaryStatusFilter('temporary')}
+                className={`px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase transition-all cursor-pointer shadow-md flex items-center justify-between gap-1.5 border rounded-none min-w-[92px] ${
+                  militaryStatusFilter === 'temporary'
+                    ? 'bg-amber-500 text-slate-950 border-amber-400 font-extrabold shadow-amber-500/25'
+                    : 'bg-slate-950/90 text-amber-400 border-amber-500/40 hover:border-amber-400 hover:text-amber-300 backdrop-blur-md'
+                }`}
+                title="Show forward operating & temporary bases"
+              >
+                <span className="flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />
+                  <span>Temp</span>
+                </span>
+                <span
+                  className={`text-[9px] px-1 py-0.2 font-mono ${
+                    militaryStatusFilter === 'temporary'
+                      ? 'bg-slate-950/25 text-slate-950 font-black'
+                      : 'bg-slate-800 text-amber-400'
+                  }`}
+                >
+                  {baseCounts.temporary}
+                </span>
+              </button>
+              <button
+                onClick={() => setMilitaryStatusFilter('decommissioned')}
+                className={`px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase transition-all cursor-pointer shadow-md flex items-center justify-between gap-1.5 border rounded-none min-w-[92px] ${
+                  militaryStatusFilter === 'decommissioned'
+                    ? 'bg-rose-500 text-slate-950 border-rose-400 font-extrabold shadow-rose-500/25'
+                    : 'bg-slate-950/90 text-rose-400 border-rose-500/40 hover:border-rose-400 hover:text-rose-300 backdrop-blur-md'
+                }`}
+                title="Show closed / historic / decommissioned bases"
+              >
+                <span className="flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-400 inline-block" />
+                  <span>Closed</span>
+                </span>
+                <span
+                  className={`text-[9px] px-1 py-0.2 font-mono ${
+                    militaryStatusFilter === 'decommissioned'
+                      ? 'bg-slate-950/25 text-slate-950 font-black'
+                      : 'bg-slate-800 text-rose-400'
+                  }`}
+                >
+                  {baseCounts.decommissioned}
+                </span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Global Military Bases Layer Toggle (Location Pin Icon 📍) */}
+        <button
+          onClick={() => {
+            setShowMilitaryBases((prev) => {
+              const next = !prev
+              if (!next) setSelectedMilitaryBase(null)
+              return next
+            })
+          }}
+          className={`nm-btn w-9 h-9 rounded-lg flex items-center justify-center transition-all relative ${
+            showMilitaryBases
+              ? 'nm-btn-active text-emerald-400 border border-emerald-500/60 shadow-emerald-500/30 shadow-md'
+              : 'text-text-primary hover:text-white'
+          }`}
+          title={showMilitaryBases ? 'Hide Global Military Bases' : 'Show Global Military Bases (Location Markers)'}
+          aria-label="Toggle Global Military Bases"
+        >
+          <IconPin className={`w-4 h-4 ${showMilitaryBases ? 'text-emerald-400' : 'text-slate-300'}`} />
+          {isScanningBases && (
+            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 border border-slate-900 animate-ping" />
+          )}
+        </button>
+
         {/* Flat Earth / 3D Globe Projection Toggle */}
         <button
           onClick={handleToggleFlat}
@@ -809,6 +1302,127 @@ function PopupContent({ placement, onRemove, onDetonate, onClose }) {
           <IconTrash className="w-3 h-3" />
           <span>REMOVE</span>
         </button>
+      </div>
+    </div>
+  )
+}
+
+function MilitaryBasePopupContent({ base, liveWiki, loading, onClose }) {
+  const summaryText = liveWiki?.extract || base.summary || 'Strategic military installation.'
+  const thumbnail = liveWiki?.thumbnail || base.thumbnail
+  const wikiUrl =
+    liveWiki?.wiki_url ||
+    base.wiki_url ||
+    `https://en.wikipedia.org/wiki/${encodeURIComponent(base.wiki_title || base.name)}`
+
+  // Live status from Wikipedia analysis or base config
+  const statusType = liveWiki?.liveStatus || base.status || 'active'
+  const statusLabel =
+    liveWiki?.liveStatusLabel ||
+    (statusType === 'decommissioned'
+      ? 'DECOMMISSIONED / HISTORIC'
+      : statusType === 'temporary'
+      ? 'FORWARD OPERATING / TEMPORARY'
+      : 'OPERATIONAL / ACTIVE')
+
+  const isDecom = statusType === 'decommissioned'
+  const isTemp = statusType === 'temporary'
+  const badgeClass = isDecom
+    ? 'bg-rose-500/15 text-rose-400 border-rose-500/30'
+    : isTemp
+    ? 'bg-amber-500/15 text-amber-400 border-amber-500/30'
+    : 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
+
+  return (
+    <div className="w-full flex flex-col p-2.5 gap-2 select-text overflow-hidden rounded-none">
+      {/* Header: Crossed Swords, Status, Country & Close */}
+      <div className="flex items-center justify-between gap-1.5 border-b border-border-card pb-1">
+        <div className="flex items-center gap-1.5 min-w-0 flex-wrap">
+          <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-none text-[8.5px] font-bold tracking-wide uppercase border ${badgeClass}`}>
+            <span className="text-xs">⚔</span>
+            <span>{statusLabel}</span>
+          </span>
+          <span className="text-[9px] font-bold px-1 py-0.5 rounded-none bg-slate-800 text-slate-200 border border-slate-700">
+            {base.country}
+          </span>
+        </div>
+
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="p-1 rounded-none nm-btn text-text-muted hover:text-text-primary shrink-0 transition-colors cursor-pointer"
+            title="Close"
+            aria-label="Close"
+          >
+            <IconClose className="w-3 h-3" />
+          </button>
+        )}
+      </div>
+
+      {/* Base Name & Operator Command */}
+      <div>
+        <div className="text-xs font-extrabold panel-title leading-snug truncate" title={base.name}>
+          {base.name}
+        </div>
+        {base.operator && (
+          <div className="text-[10px] panel-sub mt-0.5 flex items-center gap-1 font-medium truncate text-text-muted">
+            <span className="text-emerald-400 font-semibold shrink-0">Command:</span>
+            <span className="truncate">{base.operator}</span>
+          </div>
+        )}
+      </div>
+
+      {/* Live Wikipedia Thumbnail Photo (if available) */}
+      {thumbnail && (
+        <div className="relative w-full h-24 overflow-hidden rounded-none border border-border-card bg-slate-950">
+          <img
+            src={thumbnail}
+            alt={base.name}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/80 backdrop-blur-sm text-[7.5px] font-mono text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+            <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Wikipedia Media</span>
+          </div>
+        </div>
+      )}
+
+      {/* Live Wikipedia Description */}
+      <div className="nm-input p-2 rounded-none max-h-24 overflow-y-auto popup-desc-scroll text-[10px] leading-relaxed text-text-secondary">
+        {loading ? (
+          <div className="flex items-center gap-2 py-1 text-text-muted">
+            <div className="w-2.5 h-2.5 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin" />
+            <span>Connecting to Wikipedia...</span>
+          </div>
+        ) : (
+          <p className="select-text leading-relaxed whitespace-normal">{summaryText}</p>
+        )}
+      </div>
+
+      {/* Key Assets Deployed */}
+      {base.assets && (
+        <div className="nm-card px-2 py-1 rounded-none text-[9px] text-text-secondary border-l-2 border-emerald-400">
+          <span className="text-text-muted font-bold block uppercase text-[7.5px]">Deployed Assets:</span>
+          <span className="text-emerald-400 font-mono font-medium truncate block">{base.assets}</span>
+        </div>
+      )}
+
+      {/* Coordinates & External Wikipedia Link */}
+      <div className="flex justify-between items-center text-[9px] font-mono text-text-muted px-0.5">
+        <span className="flex items-center gap-1">
+          <IconPin className="w-2.5 h-2.5 text-emerald-400" />
+          {base.lat.toFixed(4)}°, {base.lng.toFixed(4)}°
+        </span>
+        <a
+          href={wikiUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="text-emerald-400 hover:underline flex items-center gap-0.5 font-sans font-semibold text-[9.5px]"
+        >
+          <span>Wikipedia</span>
+          <IconExternalLink className="w-2.5 h-2.5" />
+        </a>
       </div>
     </div>
   )

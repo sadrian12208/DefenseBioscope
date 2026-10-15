@@ -29,10 +29,81 @@
       color: #f0f3f8;
       margin: 0;
       padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
     }
     html.theme-light, body.theme-light, .theme-light #root {
       background-color: #f1f5f9 !important;
       color: #0f172a !important;
+    }
+
+    /* ── Instant CSS-Only Loading Screen (visible BEFORE React JS loads) ── */
+    #app-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #12151e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    html.theme-light #app-loader {
+      background: #f1f5f9;
+    }
+    #app-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-wrap {
+      position: relative;
+      width: 56px;
+      height: 56px;
+    }
+    /* Outer rotating ring */
+    .loader-ring {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 3px solid rgba(99, 102, 241, 0.15);
+      border-top-color: #6366f1;
+      animation: db-spin 0.72s linear infinite;
+      will-change: transform;
+    }
+    /* Inner pulse dot */
+    .loader-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #6366f1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: db-pulse 1.4s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+    .loader-label {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(148, 163, 184, 0.65);
+    }
+    html.theme-light .loader-label {
+      color: rgba(71, 85, 105, 0.75);
+    }
+    @keyframes db-spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes db-pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(0.75); opacity: 0.45; }
+      50% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +114,15 @@
 </head>
 
 <body>
+  <!-- Pure CSS loader — renders INSTANTLY before any JS bundle downloads -->
+  <div id="app-loader" aria-hidden="true">
+    <div class="loader-wrap">
+      <div class="loader-ring"></div>
+      <div class="loader-dot"></div>
+    </div>
+    <span class="loader-label">DefenseBioscope</span>
+  </div>
+
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

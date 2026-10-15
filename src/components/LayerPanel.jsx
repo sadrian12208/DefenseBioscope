@@ -1,11 +1,11 @@
 import {
   IconClose,
-  IconAirDefense,
-  IconMissile,
-  IconFighterJet,
-  IconDrone,
-  IconWarship,
-  IconCustom,
+  Icon3DAirDefense,
+  Icon3DMissile,
+  Icon3DFighterJet,
+  Icon3DDrone,
+  Icon3DWarship,
+  Icon3DCustom,
 } from './Icons'
 
 const TYPE_COLORS = {
@@ -29,18 +29,18 @@ const TYPE_LABELS = {
 function renderLayerIcon(type, className = 'w-4 h-4') {
   switch (type) {
     case 'sam':
-      return <IconAirDefense className={className} />
+      return <Icon3DAirDefense className={className} />
     case 'missile':
-      return <IconMissile className={className} />
+      return <Icon3DMissile className={className} />
     case 'aircraft':
-      return <IconFighterJet className={className} />
+      return <Icon3DFighterJet className={className} />
     case 'drone':
-      return <IconDrone className={className} />
+      return <Icon3DDrone className={className} />
     case 'navy':
-      return <IconWarship className={className} />
+      return <Icon3DWarship className={className} />
     case 'custom':
     default:
-      return <IconCustom className={className} />
+      return <Icon3DCustom className={className} />
   }
 }
 

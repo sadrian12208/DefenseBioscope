@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from 'react'
+import { useState, useMemo, useEffect, useRef, memo, useCallback } from 'react'
 import { searchWeapons } from '../services/wikiWeaponLookup'
 import {
   IconSearch,
@@ -21,6 +21,7 @@ import {
   IconCrosshair,
   IconGlobe,
   IconAlert,
+  Icon3DTank,
 } from './Icons'
 
 const TYPE_COLORS = {
@@ -29,7 +30,8 @@ const TYPE_COLORS = {
   aircraft: '#a855f7',
   drone: '#10b981',
   navy: '#3b82f6',
-  custom: '#f59e0b',
+  tank: '#10b981',
+  custom: '#10b981',
 }
 
 const TYPE_LABELS = {
@@ -38,6 +40,7 @@ const TYPE_LABELS = {
   aircraft: 'Aircraft',
   drone: 'Drone / UAV',
   navy: 'Navy / Ship',
+  tank: 'Tank / Armor',
   custom: 'Custom',
 }
 
@@ -53,13 +56,15 @@ function renderTypeIcon(type, className = 'w-7 h-7') {
       return <Icon3DDrone className={className} />
     case 'navy':
       return <Icon3DWarship className={className} />
+    case 'tank':
+      return <Icon3DTank className={className} />
     case 'custom':
     default:
       return <Icon3DCustom className={className} />
   }
 }
 
-function SystemCard({ system, onSelect, isSelected }) {
+const SystemCard = memo(function SystemCard({ system, onSelect, isSelected }) {
   const color = TYPE_COLORS[system.type] || TYPE_COLORS.custom
   const speed = system.specs?.speed
   const payload = system.specs?.payload
@@ -101,7 +106,11 @@ function SystemCard({ system, onSelect, isSelected }) {
           <div className="flex items-center gap-2 mt-1 min-w-0 overflow-x-auto whitespace-nowrap scrollbar-none card-meta">
             <span
               className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded shrink-0 leading-none"
-              style={{ color, background: `${color}22`, border: `1px solid ${color}45` }}
+              style={{
+                color: (system.type === 'custom' || system.type === 'tank') ? '#10b981' : color,
+                background: (system.type === 'custom' || system.type === 'tank') ? '#10b98122' : `${color}22`,
+                border: `1px solid ${(system.type === 'custom' || system.type === 'tank') ? '#10b98145' : `${color}45`}`,
+              }}
             >
               {TYPE_LABELS[system.type] || 'System'}
             </span>
@@ -113,8 +122,8 @@ function SystemCard({ system, onSelect, isSelected }) {
               km
             </span>
 
-            {/* Real Country Badge & Name */}
-            {system.origin && (
+            {/* Real Country Badge & Name — hidden for custom/tank types */}
+            {system.origin && system.type !== 'custom' && system.type !== 'tank' && (
               <span className="flex items-center gap-1 text-[11px] card-meta shrink-0 leading-none" title={system.origin}>
                 <OriginDisplay origin={system.origin} flagClass="shrink-0 text-xs" textClass="leading-none" />
               </span>
@@ -148,9 +157,9 @@ function SystemCard({ system, onSelect, isSelected }) {
       </div>
     </button>
   )
-}
+})
 
-function PlacedItem({ placement, onRemove, onToggle }) {
+const PlacedItem = memo(function PlacedItem({ placement, onRemove, onToggle }) {
   const color = TYPE_COLORS[placement.system.type] || TYPE_COLORS.custom
 
   return (
@@ -191,7 +200,7 @@ function PlacedItem({ placement, onRemove, onToggle }) {
       </button>
     </div>
   )
-}
+})
 
 export default function Sidebar({
   systems,
@@ -401,7 +410,7 @@ export default function Sidebar({
                     <button
                       key={type}
                       onClick={() => setFilterType(type)}
-                      className={`h-7 px-2 rounded-md text-[10.5px] font-semibold flex items-center justify-center text-center gap-1.5 cursor-pointer transition-all ${
+                      className={`h-7 px-1.5 rounded-md text-[10.5px] font-semibold flex items-center justify-center text-center gap-1 cursor-pointer transition-all ${
                         filterType === type
                           ? 'nm-btn-active font-bold text-white shadow-sm'
                           : 'nm-btn text-text-muted hover:text-text-primary'

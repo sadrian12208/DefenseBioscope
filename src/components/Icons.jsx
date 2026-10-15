@@ -184,6 +184,53 @@ export const Icon3DWarship = ({ className = 'w-7 h-7', ...props }) => (
   </svg>
 )
 
+export const Icon3DTank = ({ className = 'w-7 h-7', ...props }) => (
+  <svg className={className} viewBox="0 0 48 48" fill="none" {...props}>
+    <defs>
+      <linearGradient id="tankHull" x1="24" y1="20" x2="24" y2="38" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#84cc16" />
+        <stop offset="40%" stopColor="#4d7c0f" />
+        <stop offset="100%" stopColor="#365314" />
+      </linearGradient>
+      <linearGradient id="tankTurret" x1="24" y1="14" x2="24" y2="28" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#a3e635" />
+        <stop offset="60%" stopColor="#65a30d" />
+        <stop offset="100%" stopColor="#3f6212" />
+      </linearGradient>
+      <linearGradient id="tankTread" x1="24" y1="32" x2="24" y2="44" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#334155" />
+        <stop offset="100%" stopColor="#0f172a" />
+      </linearGradient>
+      <linearGradient id="tankBarrel" x1="16" y1="16" x2="44" y2="16" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#94a3b8" />
+        <stop offset="50%" stopColor="#cbd5e1" />
+        <stop offset="100%" stopColor="#475569" />
+      </linearGradient>
+    </defs>
+    {/* Long Main Cannon Gun Barrel */}
+    <rect x="22" y="18" width="22" height="3.2" rx="1" fill="url(#tankBarrel)" stroke="#1e293b" strokeWidth="0.5" />
+    {/* Muzzle brake at end of barrel */}
+    <rect x="42" y="17" width="2.5" height="5.2" rx="0.8" fill="#475569" stroke="#0f172a" strokeWidth="0.5" />
+    <rect x="28" y="17.2" width="4" height="4.8" rx="0.8" fill="#475569" />
+    {/* Tank Lower Tracks / Treads */}
+    <rect x="6" y="32" width="34" height="9" rx="4.5" fill="url(#tankTread)" stroke="#1e293b" strokeWidth="0.8" />
+    {/* Road Wheels inside treads */}
+    <circle cx="11" cy="36.5" r="3" fill="#64748b" stroke="#334155" strokeWidth="0.6" />
+    <circle cx="17.5" cy="36.5" r="3" fill="#64748b" stroke="#334155" strokeWidth="0.6" />
+    <circle cx="24" cy="36.5" r="3" fill="#64748b" stroke="#334155" strokeWidth="0.6" />
+    <circle cx="30.5" cy="36.5" r="3" fill="#64748b" stroke="#334155" strokeWidth="0.6" />
+    <circle cx="36" cy="36.5" r="2.5" fill="#475569" stroke="#334155" strokeWidth="0.6" />
+    {/* Tank Armored Sloped Chassis Hull */}
+    <path d="M7 32L11 23H35L39 32H7Z" fill="url(#tankHull)" stroke="#1e293b" strokeWidth="0.8" />
+    {/* Glacis plate highlight line */}
+    <line x1="11" y1="24" x2="35" y2="24" stroke="#ffffff" strokeWidth="0.8" opacity="0.4" />
+    {/* Tank Armored Turret */}
+    <path d="M14 24L17 16H29L32 24H14Z" fill="url(#tankTurret)" stroke="#0f172a" strokeWidth="0.8" />
+    {/* Commander Cupola / Hatch */}
+    <rect x="19" y="13.5" width="6" height="3" rx="1" fill="#475569" stroke="#1e293b" strokeWidth="0.5" />
+  </svg>
+)
+
 export const Icon3DCustom = ({ className = 'w-7 h-7', ...props }) => (
   <svg className={className} viewBox="0 0 48 48" fill="none" {...props}>
     <defs>
@@ -364,9 +411,15 @@ const COUNTRY_ISO = {
 function getCountryIso(countryStr) {
   if (!countryStr) return null
   const c = countryStr.toLowerCase().trim()
+  if (c === 'custom') return null
   if (COUNTRY_ISO[c]) return COUNTRY_ISO[c]
   for (const [key, iso] of Object.entries(COUNTRY_ISO)) {
-    if (c.includes(key)) return iso
+    if (key.length <= 2) {
+      const regex = new RegExp(`(^|[^a-z0-9])${key}([^a-z0-9]|$)`, 'i')
+      if (regex.test(c)) return iso
+    } else if (c.includes(key)) {
+      return iso
+    }
   }
   return null
 }
@@ -374,13 +427,19 @@ function getCountryIso(countryStr) {
 function getFlagEmoji(countryStr) {
   if (!countryStr) return '🌐'
   const c = countryStr.toLowerCase().trim()
+  if (c === 'custom') return ''
 
   // Try direct match first
   if (COUNTRY_FLAGS[c]) return COUNTRY_FLAGS[c]
 
   // Try matching by partial / multi-country origins like "USA/Germany" or "India/Russia"
   for (const [key, flag] of Object.entries(COUNTRY_FLAGS)) {
-    if (c.includes(key)) return flag
+    if (key.length <= 2) {
+      const regex = new RegExp(`(^|[^a-z0-9])${key}([^a-z0-9]|$)`, 'i')
+      if (regex.test(c)) return flag
+    } else if (c.includes(key)) {
+      return flag
+    }
   }
 
   return '🌐'
@@ -576,6 +635,10 @@ export const splitCountries = (origin = '') => {
 export const IconCountryBadge = ({ country = '', className = '', ...props }) => {
   const [imgError, setImgError] = useState(false)
 
+  if (!country || country.toLowerCase() === 'custom' || country.toLowerCase() === 'tank') {
+    return null
+  }
+
   // Handle merged countries like "India/Russia" or "Iran / North Korea"
   if (country && (country.includes('/') || country.includes(','))) {
     const countries = splitCountries(country)
@@ -625,6 +688,8 @@ export const IconCountryBadge = ({ country = '', className = '', ...props }) => 
 
   // Priority 3: Fallback to emoji
   const flag = getFlagEmoji(country)
+  if (!flag) return null
+
   return (
     <span
       className={className}
@@ -650,6 +715,11 @@ export const OriginDisplay = ({
   showNames = true,
   separator = '/',
 }) => {
+  if (!origin) return null
+  if (origin.toLowerCase() === 'custom' || origin.toLowerCase() === 'tank') {
+    return showNames ? <span className={textClass}>{origin}</span> : null
+  }
+
   const countries = useMemo(() => splitCountries(origin), [origin])
   if (countries.length === 0) return null
 
@@ -820,4 +890,29 @@ export const IconMap = ({ className = 'w-4 h-4', ...props }) => (
     <line x1="16" y1="6" x2="16" y2="22" />
   </svg>
 )
+
+/* Crossed Swords Military Icon (⚔) */
+export const IconSwords = ({ className = 'w-4 h-4', ...props }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <line x1="4" y1="20" x2="14" y2="10" />
+    <line x1="20" y1="4" x2="14" y2="10" />
+    <polyline points="14 4 20 4 20 10" />
+    <line x1="20" y1="20" x2="10" y2="10" />
+    <line x1="4" y1="4" x2="10" y2="10" />
+    <polyline points="10 4 4 4 4 10" />
+    <line x1="7" y1="17" x2="3" y2="21" />
+    <line x1="17" y1="17" x2="21" y2="21" />
+  </svg>
+)
+
+/* Military Outpost / Base Fortress Icon */
+export const IconMilitaryBase = ({ className = 'w-4 h-4', ...props }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M3 21h18" />
+    <path d="M5 21V7l3-3 4 4 4-4 3 3v14" />
+    <path d="M9 21v-4a3 3 0 0 1 6 0v4" />
+    <circle cx="12" cy="11" r="1.5" fill="currentColor" />
+  </svg>
+)
+
 

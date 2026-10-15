@@ -152,15 +152,33 @@ body.theme-light .nm-btn-active {
   bottom: 28px !important;
   right: 14px !important;
   margin: 0 !important;
-  z-index: 999 !important;
+  z-index: 995 !important;
+}
+
+/* Floating Tactical Map Controls (Military Bases, Flat Earth, Theme & Filters) */
+.map-floating-controls {
+  position: fixed;
+  right: 14px;
+  bottom: 146px;
+  z-index: 995;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+  pointer-events: auto;
+}
+
+.maplibregl-ctrl-bottom-right .maplibregl-ctrl {
+  margin: 0 !important;
 }
 
 .maplibregl-ctrl-group {
   background: var(--bg-surface) !important;
   border: 1px solid var(--border-subtle) !important;
-  border-radius: 10px !important;
+  border-radius: 8px !important;
   box-shadow: var(--nm-card) !important;
   overflow: hidden;
+  margin: 0 !important;
 }
 
 .maplibregl-ctrl-group button {
@@ -168,6 +186,9 @@ body.theme-light .nm-btn-active {
   border-bottom: 1px solid var(--border-subtle) !important;
   width: 36px !important;
   height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .maplibregl-ctrl-group button:last-child {
@@ -176,6 +197,23 @@ body.theme-light .nm-btn-active {
 
 .maplibregl-ctrl-group button:hover {
   background: rgba(59, 130, 246, 0.15) !important;
+}
+
+/* Crisp pure white + and - icons for dark mode */
+.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 29 29'%3E%3Cpath d='M14.5 8.5c-.75 0-1.5.75-1.5 1.5v3.5H9.5c-.75 0-1.5.75-1.5 1.5s.75 1.5 1.5 1.5h3.5v3.5c0 .75.75 1.5 1.5 1.5s1.5-.75 1.5-1.5v-3.5h3.5c.75 0 1.5-.75 1.5-1.5s-.75-1.5-1.5-1.5h-3.5V10c0-.75-.75-1.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 29 29'%3E%3Cpath d='M10 13c-.75 0-1.5.75-1.5 1.5s.75 1.5 1.5 1.5h9c.75 0 1.5-.75 1.5-1.5s-.75-1.5-1.5-1.5h-9z'/%3E%3C/svg%3E") !important;
+}
+
+body.theme-light .maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%231e293b' viewBox='0 0 29 29'%3E%3Cpath d='M14.5 8.5c-.75 0-1.5.75-1.5 1.5v3.5H9.5c-.75 0-1.5.75-1.5 1.5s.75 1.5 1.5 1.5h3.5v3.5c0 .75.75 1.5 1.5 1.5s1.5-.75 1.5-1.5v-3.5h3.5c.75 0 1.5-.75 1.5-1.5s-.75-1.5-1.5-1.5h-3.5V10c0-.75-.75-1.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+body.theme-light .maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%231e293b' viewBox='0 0 29 29'%3E%3Cpath d='M10 13c-.75 0-1.5.75-1.5 1.5s.75 1.5 1.5 1.5h9c.75 0 1.5-.75 1.5-1.5s-.75-1.5-1.5-1.5h-9z'/%3E%3C/svg%3E") !important;
 }
 
 .maplibregl-ctrl-compass {
@@ -195,8 +233,10 @@ body.theme-light .nm-btn-active {
   color: #ffffff !important;
   padding: 0 !important;
   overflow: hidden !important;
-  width: 280px !important;
-  max-width: 280px !important;
+  width: 290px !important;
+  max-width: 290px !important;
+  max-height: calc(100vh - 120px) !important;
+  overflow-y: auto !important;
 }
 
 body.theme-light .system-popup-gl .maplibregl-popup-content {
@@ -300,6 +340,26 @@ body.theme-light .system-popup-gl .maplibregl-popup-tip {
   background: var(--accent-blue);
 }
 
+/* Tactical Description Slide Bar for Popup Cards */
+.popup-desc-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(52, 211, 153, 0.45) transparent;
+}
+.popup-desc-scroll::-webkit-scrollbar {
+  width: 3.5px;
+}
+.popup-desc-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 2px;
+}
+.popup-desc-scroll::-webkit-scrollbar-thumb {
+  background: rgba(52, 211, 153, 0.5);
+  border-radius: 2px;
+}
+.popup-desc-scroll::-webkit-scrollbar-thumb:hover {
+  background: #34d399;
+}
+
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
@@ -331,6 +391,34 @@ body.theme-light .system-popup-gl .maplibregl-popup-tip {
   .mobile-only {
     display: block !important;
   }
+
+  /* Keep MapLibre controls (+, -, compass) cleanly above the collapsed 68px mobile bottom sheet */
+  .maplibregl-ctrl-bottom-right {
+    bottom: 76px !important;
+    right: 12px !important;
+    z-index: 995 !important;
+  }
+
+  /* Stack floating tactical controls (location, flat earth, theme toggle + military bases filter) right above NavigationControl */
+  .map-floating-controls {
+    right: 12px !important;
+    bottom: 196px !important;
+    z-index: 995 !important;
+    max-height: calc(100vh - 260px);
+  }
+
+  /* Responsive MapLibre popup: never overflows header or bottom drawer on mobile */
+  .system-popup-gl .maplibregl-popup-content {
+    width: min(290px, calc(100vw - 24px)) !important;
+    max-width: min(290px, calc(100vw - 24px)) !important;
+    max-height: calc(100vh - 160px) !important;
+  }
+}
+
+/* Instant responsive touch taps on mobile without delay or gray flash */
+button, input, select, .nm-btn, .system-card, .placed-card {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (min-width: 769px) {
@@ -428,3 +516,85 @@ body.theme-light .tactical-side-panel .panel-sub {
   color: #334155 !important;
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   PERFORMANCE — GPU-Accelerated Interactions & Paint Optimization
+   All visual state changes use opacity/transform (compositor-only)
+   so the browser never triggers a layout or style recalculation.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Promote buttons to GPU compositing layer — instant visual response */
+.nm-btn {
+  will-change: transform;
+  transition: transform 0.06s ease, background-color 0.06s ease, box-shadow 0.06s ease !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Active press — immediate downward snap (no delay) */
+.nm-btn:active {
+  transform: translateY(1px) scale(0.98) !important;
+  transition-duration: 0.04s !important;
+}
+
+/* Cards: promote to own layer for zero-jank hover/selection transitions */
+.system-card, .placed-card {
+  will-change: transform, background-color;
+  transform: translateZ(0);          /* force GPU compositing */
+  transition: background-color 0.06s ease, border-color 0.06s ease, transform 0.06s ease !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Weapon list container — skip paint for offscreen cards */
+.weapon-list-scroll {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 400px;
+}
+
+/* MobileSheet drawer animate height with GPU transform instead of height prop */
+.mobile-drawer-animate {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Map floating controls — promote to compositor layer so map renders never cause repaint */
+.map-floating-controls {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Fade-in animation for newly placed system cards — GPU-only */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.15s ease forwards;
+}
+
+/* Respect OS reduce-motion preference — disable all animations instantly */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Input focus — instant border highlight, no layout shifts */
+.nm-input:focus {
+  outline: none !important;
+  border-color: rgba(99, 102, 241, 0.65) !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.18) !important;
+  transition: border-color 0.08s ease, box-shadow 0.08s ease;
+}
+
+/* Prevent FOUC on theme switch */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}

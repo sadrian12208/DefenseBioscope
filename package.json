@@ -2,6 +2,7 @@
   "name": "defensebioscope",
   "private": true,
   "version": "1.0.0",
+  "author": "Yeasin Sarder",
   "type": "module",
   "scripts": {
     "dev": "vite",

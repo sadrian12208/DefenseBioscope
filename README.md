@@ -73,6 +73,12 @@ This compiles both the standard web distribution and updates the self-contained 
 
 ---
 
+## 👨‍💻 Creator & Author
+
+**DefenseBioscope** is created, engineered, and maintained by **Yeasin Sarder** ([@sadrian12208](https://github.com/sadrian12208)).
+
+---
+
 ## 📜 Disclaimer & Licensing
 
 DefenseBioscope is an open-source visualizer created for educational, geopolitical analysis, and defense research purposes. All military hardware data and base locations are derived exclusively from publicly available, unclassified sources.
